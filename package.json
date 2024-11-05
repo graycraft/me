@@ -1,0 +1,31 @@
+{
+  "name": "graycraft.me",
+  "version": "0.1.0-alpha",
+  "description": "Client and server logic of the graycraft.me website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graycraft/me.git"
+  },
+  "keywords": [
+    "graycraft",
+    "graycraft.me",
+    "web",
+    "site",
+    "website",
+    "www"
+  ],
+  "author": "Defined Prototype <graycraft@pm.me> (https://graycraft.me/)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/graycraft/me/issues"
+  },
+  "homepage": "https://github.com/graycraft/me#readme",
+  "engines": {
+    "node": "22.11.0",
+    "npm": "10.9.0"
+  }
+}
