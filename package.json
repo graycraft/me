@@ -2,9 +2,10 @@
   "name": "graycraft.me",
   "version": "0.1.1-alpha",
   "description": "Client and server logic of the graycraft.me website.",
-  "main": "index.js",
+  "main": "app.js",
   "private": true,
   "scripts": {
+    "start": "node ./bin/www",
     "test": "jest"
   },
   "repository": {
@@ -27,8 +28,7 @@
   "homepage": "https://github.com/graycraft/me#readme",
   "engines": {
     "node": "22.11.0",
-    "npm": "10.9.0",
-    "start": "node ./bin/www"
+    "npm": "10.9.0"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
