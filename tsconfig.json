@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNext"
+  },
+  "exclude": [".vscode", "dist", "public"],
+  "files": ["./index.mts", "./typings/window.d.ts"],
+  "include": ["**/*"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "transpileOnly": true
+  }
+}
