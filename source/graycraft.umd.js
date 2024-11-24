@@ -55,17 +55,7 @@ var root = typeof self !== 'undefined' ? self : this;
       gray = getCoordinates('gray', dx, dy),
       craft = getCoordinates('craft', dx, dy),
       hue = daysToHue(daysInYear(new Date())),
-      // hue = daysToHue(1),   // Jan 01.
-      // hue = daysToHue(61),  // Feb 29 or Mar 01 (leap year)
-      // hue = daysToHue(153), // May 31 or Jun 01 (leap year).
-      // hue = daysToHue(245), // Aug 31 or Sep 01 (leap year).
-      // hue = daysToHue(336), // Nov 30 or Dec 01 (leap year).
-      // hue = daysToHue(365), // Dec 30 or Dec 31 (leap year).
       hsl = color || 'hsl(' + hue + ', 50%, 50%)';
-
-    for (var i = 1; i <= 366; i++) {
-      daysToHue(i);
-    }
 
     return {
       drawCanvas,
