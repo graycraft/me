@@ -1,8 +1,48 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: white;
+  color: gray;
+  margin: 0;
+  font-family: 'Roboto Mono', FreeMono, 'Courier New', Courier, ui-monospace, monospace;
+  font-weight: 700;
+  font-style: normal;
+  overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
-
-a {
-  color: #00B7FF;
+footer {
+  bottom: 0;
+  color: silver;
+  font-size: 1rem;
+  width: 100%;
+}
+footer,
+main {
+  position: absolute;
+  text-align: center;
+}
+img,
+svg {
+  display: block;
+}
+main {
+  left: 50%;
+  top: 50%;
+}
+menu {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  display: inline;
+  white-space: nowrap;
 }

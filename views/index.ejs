@@ -1,11 +1,254 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      name="description"
+    />
+    <meta content="nofollow,noindex" name="robots" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      property="og:description"
+    />
+    <!--meta
+      content="/% imagePath %"
+      property="og:image"
+    /-->
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      property="og:title"
+    />
+    <meta content="https://graycraft.me/" property="og:url" />
+    <title><%- title %></title>
+    <base href="//<%- host %>" target="_blank" />
+    <link href="https://graycraft.me" rel="canonical" />
+    <link href="/<%- imagePath %>" rel="icon" />
+    <!--link
+      href="//fonts.googleapis.com"
+      rel="preconnect"
+    />
+    <link
+      crossorigin=""
+      href="//fonts.gstatic.com"
+      rel="preconnect"
+    />
+    <link
+      href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="/stylesheets/style.css"
+      rel="stylesheet"
+    />-->
+    <!--script
+      defer=""
+      onerror="'use strict'; console.error('Can not load the script:', this);"
+      src="/javascripts/graycraft.umd.js"
+    ></script-->
+    <!--script>
+      &lt;%- script %&gt;
+    </script>
+    <script>
+      "use strict";
+
+      window.addEventListener("load", function () {
+        var graycraft = new window.Graycraft(<%- size %>, '<%- color %>')/* ,
+          canvas = graycraft.drawCanvas() */;
+
+        // graycraft.drawImage(canvas);
+        graycraft.drawSvg();
+      });
+      document.onselectstart = function (event) {
+        event.preventDefault();
+      };
+    </script-->
+    <style>
+      <%- css %>
+    </style>
+    <style>
+      body {
+        font-size: <%- size / 8 %>px;
+      }
+      main {
+        height: <%- size  %>px;
+        margin-left: -<%- size / 2 %>px;
+        margin-top: -<%- size / 2 %>px;
+        width: <%- size  %>px
+      }
+      #links-contacts {
+        font-size: 1.7rem;
+      }
+      #links-contacts a {
+        color: black;
+      }
+      #links-legacy {
+        font-size: 1.65rem;
+      }
+      #links-legacy a {
+        color: gray;
+      }
+      #links-social {
+        font-size: 1.95rem;
+      }
+      #links-social a {
+        color: <%- hsl %>;
+      }
+    </style>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <noscript>JavaScript is not supported by your browser.</noscript>
+    <main>
+      <!-- Image from base64 data URL generated on the server side (fast). -->
+      <!-- img
+        alt="&lt;img /&gt;"
+        draggable="false"
+        loading="lazy"
+        ondragstart="'use strict'; event.preventDefault();"
+        onerror="'use strict'; console.error('Can not load the image:', this);"
+        src="&lt;%- image %&gt;"
+        style="float: right;"
+        title="Graycraft"
+      / -->
+      <!-- Image loading from a PNG file URL on a client side (slow). -->
+      <!-- img
+        alt="&lt;img /&gt;"
+        draggable="false"
+        loading="lazy"
+        ondragstart="'use strict'; event.preventDefault();"
+        onerror="'use strict'; this.src = 'data:image/svg;base64,'"
+        src="/<%- imagePath %>"
+        title="Graycraft"
+      / -->
+      <!-- Image from a blob URL generated on a client side (slowest). -->
+      <!-- img
+        alt="&lt;img /&gt;"
+        draggable="false"
+        id="logo-image"
+        ondragstart="'use strict'; event.preventDefault();"
+        onerror="'use strict'; console.error('Can not load the image:', this);"
+        style="float: right;"
+        title="Graycraft"
+      / -->
+      <!-- Canvas generated on a client side (slow). -->
+      <!-- canvas
+        height="<%- size %>"
+        id="logo-canvas"
+        onerror="'use strict'; console.error('Can not load the canvas:', this);"
+        title="Graycraft"
+        width="<%- size %>"
+      >
+        Canvas API is not supported by your browser.
+      </canvas -->
+      <!-- SVG generated on a client side (medium). -->
+      <!-- svg
+        height="<%- size %>"
+        id="logo-svg"
+        onerror="'use strict'; console.error('Can not load the SVG:', this);"
+        preserveAspectRatio="xMidYMid meet"
+        style="float: right;"
+        viewBox="0 0 <%- size %> <%- size %>"
+        width="<%- size %>"
+      >
+        SVG is not supported by your browser.
+      </svg -->
+      <!-- SVG generated on the server side (fastest). -->
+      <svg
+        height="<%- size %>"
+        onerror="'use strict'; console.error('Can not load the SVG:', this);"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 <%- size %> <%- size %>"
+        width="<%- size %>"
+      ><%- svg %></svg>
+      <nav>
+        <ul id="links-contacts">
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="https://t.me/graycraft"
+              rel="nofollow noopener noreferrer"
+              title="My contact on the Telegram."
+              >t.me/graycraft</a
+            >
+          </li>
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="mailto:graycraft@pm.me"
+              rel="nofollow noopener noreferrer"
+              title="My email address."
+              >graycraft@pm.me</a
+            >
+          </li>
+        </ul>
+        <ul id="links-social">
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="https://github.com/graycraft"
+              rel="nofollow noopener noreferrer"
+              title="My repositories on the GitHub."
+              >GitHub</a
+            >
+          </li>
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="https://ekaterinburg.hh.ru/resume/bb47c39cff05e8d1290039ed1f49627735616b"
+              rel="nofollow noopener noreferrer"
+              title="My CV on the HeadHunter."
+              >HeadHunter</a
+            >
+          </li>
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="https://www.linkedin.com/in/dmitriy-papulovskiy-0b779b172"
+              rel="nofollow noopener noreferrer"
+              title="My profile on the LinkedIn."
+              >LinkedIn</a
+            >
+          </li>
+        </ul>
+        <ul id="links-legacy">
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="https://freelance.ru/graycraft"
+              rel="nofollow noopener noreferrer"
+              title="My first works in WebDev."
+              >Freelance</a
+            >
+          </li>
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="https://jsfiddle.net/u/graycraft"
+              rel="nofollow noopener noreferrer"
+              title="My experiments with JavaScript."
+              >JSFiddle</a
+            >
+          </li>
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="https://web.archive.org/web/20180830010001/https://graycraft.io/#/about"
+              rel="nofollow noopener noreferrer"
+              title="My legacy personal site."
+              >graycraft.io</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </main>
+    <footer>DP &#xA9; <%- year %></footer>
   </body>
 </html>

@@ -9,16 +9,19 @@
 
 import type { Express, ErrorRequestHandler, RequestHandler } from 'express';
 
+import nodeFs from 'node:fs';
 import nodePath from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import cookieParser from 'cookie-parser';
+import 'dotenv/config';
 import express from 'express';
 import createError from 'http-errors';
 import logger from 'morgan';
 
 import { HTTP } from './library/constants.mts';
 import routerIndex from './routes/index.mts';
+import graycraft from './source/graycraft.umd.js';
 
 const {
     STATUS: { INTERNAL_SERVER_ERROR },
@@ -40,6 +43,27 @@ app.use('/', routerIndex);
  * Catch 404 and forward to error handler.
  */
 app.use(((req, res, next) => {
+  const { HOSTNAME, PORT } = process.env,
+    host = HOSTNAME + ':' + PORT,
+    cssBuffer = nodeFs.readFileSync('public/stylesheets/style.css'),
+    css = String(cssBuffer),
+    { color: colorQuery, size: sizeQuery } = req.query,
+    color = String(colorQuery ?? ''),
+    size = Number(sizeQuery ?? 512),
+    { getYear, hsl } = graycraft(size);
+
+  res.render('404', {
+    color,
+    css,
+    host,
+    hsl,
+    imagePath: 'images/graycraft.png',
+    header: '404',
+    paragraph: 'This page is not found on the server.',
+    size,
+    title: 'Not Found',
+    year: getYear(),
+  });
   next(createError(404));
 }) as RequestHandler);
 
