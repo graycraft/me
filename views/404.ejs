@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      name="description"
+    />
+    <meta content="nofollow,noindex" name="robots" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      property="og:description"
+    />
+    <!--meta
+      content="/% imagePath %"
+      property="og:image"
+    /-->
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      property="og:title"
+    />
+    <meta content="https://graycraft.me/" property="og:url" />
+    <title><%- title %></title>
+    <base href="//<%- host %>" target="_blank" />
+    <link href="https://graycraft.me" rel="canonical" />
+    <link href="/<%- imagePath %>" rel="icon" />
+    <!--link
+      href="//fonts.googleapis.com"
+      rel="preconnect"
+    />
+    <link
+      crossorigin=""
+      href="//fonts.gstatic.com"
+      rel="preconnect"
+    />
+    <link
+      href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="/stylesheets/style.css"
+      rel="stylesheet"
+    />-->
+    <style>
+      <%- css %>
+    </style>
+    <style>
+      body {
+        font-size: <%- size / 16 %>px;
+      }
+      h1 {
+        font-size: 27rem;
+        margin: 0;
+      }
+      main {
+        height: <%- size * 2 %>px;
+        margin-left: -<%- size %>px;
+        margin-top: -<%- size %>px;
+        width: <%- size * 2 %>px;
+      }
+      p {
+        color: black;
+        margin: 0;
+      }
+      #links-index {
+        font-size: 1.7rem;
+      }
+      #links-index a {
+        color: <%- hsl %>;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>JavaScript is not supported by your browser.</noscript>
+    <main>
+      <h1><%- header %></h1>
+      <p><%- paragraph %></p>
+      <nav>
+        <ul id="links-index">
+          <li>
+            <a
+              draggable="false"
+              ondragstart="'use strict'; event.preventDefault();"
+              href="/"
+              target="_top"
+              title="Go to index page."
+              >Index</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </main>
+    <footer>DP &#xA9; <%- year %></footer>
+  </body>
+</html>

@@ -1,4 +1,4 @@
 # Directories with auto-generated files.
 .vscode
-dist
+distribution
 public
