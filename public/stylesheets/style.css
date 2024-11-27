@@ -5,7 +5,7 @@ body {
   font-family: 'Roboto Mono', FreeMono, 'Courier New', Courier, ui-monospace, monospace;
   font-weight: 700;
   font-style: normal;
-  overflow: hidden;
+  text-align: center;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -14,28 +14,17 @@ body {
   -o-user-select: none;
   user-select: none;
 }
+body, html {
+  height: 100%;
+}
 footer {
-  bottom: 0;
   color: silver;
   font-size: 1rem;
-  width: 100%;
-}
-footer,
-main {
-  position: absolute;
-  text-align: center;
-}
-img,
-svg {
-  display: block;
+  line-height: 1.5rem;
+  margin-top: -1.5rem;
 }
 main {
-  left: 50%;
-  top: 50%;
-}
-menu {
-  margin: 0;
-  padding: 0;
+  min-height: 100%;
 }
 ul {
   list-style-type: none;
@@ -43,6 +32,11 @@ ul {
   padding: 0;
 }
 ul li {
-  display: inline;
   white-space: nowrap;
+}
+#wrapper {
+  padding-bottom: 1.5rem;
+}
+.logotype {
+  width: 100%;
 }

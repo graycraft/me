@@ -4,6 +4,8 @@
  * @module library/graycraft
  */
 
+export const SIZE: number = 360;
+
 /**
  * Draw shapes on SVG element (server only).
  * @param {() => {
