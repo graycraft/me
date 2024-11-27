@@ -43,8 +43,8 @@ app.use('/', routerIndex);
  * Catch 404 and forward to error handler.
  */
 app.use(((req, res, next) => {
-  const { HOSTNAME, PORT } = process.env,
-    host = HOSTNAME + ':' + PORT,
+  const { HOSTNAME, PORT_PROXY } = process.env,
+    host = HOSTNAME + ':' + PORT_PROXY,
     cssBuffer = nodeFs.readFileSync('public/stylesheets/style.css'),
     css = String(cssBuffer),
     { color: colorQuery, size: sizeQuery } = req.query,
