@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "NodeNext",
+    "moduleDetection": "force",
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "outDir": "./distribution",
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictBuiltinIteratorReturn": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "useUnknownInCatchVariables": true
+  },
+  "exclude": [".vscode", "distribution", "public"],
+  "files": [
+    "./app.mts",
+    "./index.mts",
+    "./library/constants.mts",
+    "./library/graycraft.mts",
+    "./routes/index.mts",
+    "./source/graycraft.umd.js",
+    "./typings/window.d.ts"
+  ],
+  "include": ["**/*"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "transpileOnly": true
+  }
+}

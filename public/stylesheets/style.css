@@ -1,0 +1,42 @@
+body {
+  background-color: white;
+  color: gray;
+  margin: 0;
+  font-family: 'Roboto Mono', FreeMono, 'Courier New', Courier, ui-monospace, monospace;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+body, html {
+  height: 100%;
+}
+footer {
+  color: silver;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-top: -1.5rem;
+}
+main {
+  min-height: 100%;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  white-space: nowrap;
+}
+#wrapper {
+  padding-bottom: 1.5rem;
+}
+.logotype {
+  width: 100%;
+}

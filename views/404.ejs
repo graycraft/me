@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+    <meta
+      content="width=device-width,initial-scale=1,maximum-scale=2,minimum-scale=.25,user-scalable=yes"
+      name="viewport"
+    />
+    <meta content="Graycraft" name="apple-mobile-web-app-title" />
+    <meta content="Graycraft" name="application-name" />
+    <meta content="#808080" name="theme-color" />
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      name="description"
+    />
+    <meta content="nofollow,noindex" name="robots" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      property="og:description"
+    />
+    <!--meta
+      content="/% imagePath %"
+      property="og:image"
+    /-->
+    <meta
+      content="Defined Prototype &lt;graycraft@pm.me&gt; (https://graycraft.me/)"
+      property="og:title"
+    />
+    <meta content="https://graycraft.me/" property="og:url" />
+    <title><%- title %></title>
+    <base href="//<%- host %>" target="_blank" />
+    <link href="https://graycraft.me" rel="canonical" />
+    <link href="/<%- imagePath %>" rel="icon" />
+    <!--link
+      href="//fonts.googleapis.com"
+      rel="preconnect"
+    />
+    <link
+      crossorigin=""
+      href="//fonts.gstatic.com"
+      rel="preconnect"
+    />
+    <link
+      href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="/stylesheets/style.css"
+      rel="stylesheet"
+    />-->
+    <link href="/<%- imagePath %>" rel="apple-touch-icon" sizes="360x360" />
+    <link href="/<%- imagePath %>" rel="icon" sizes="360x360" type="image/png" />
+    <link href="/<%- imagePath %>" rel="mask-icon" />
+    <style>
+      <%- css %>
+    </style>
+    <style>
+      body {
+        font-size: <%- size / 12 %>px;
+        line-height: <%- (size / 12) * 1.5 %>px;
+      }
+      #links-index a {
+        color: <%- hsl %>;
+      }
+      #description {
+        font-size: <%- 5 / 2 %>rem;
+      }
+      #title {
+        color: black;
+        font-size: 12rem;
+        line-height: <%- 12 * 1.5 %>rem;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>JavaScript is not supported by your browser.</noscript>
+    <main>
+      <div id="wrapper">
+        <h1 id="title"><%- header %></h1>
+        <p id="description"><%- paragraph %></p>
+        <nav>
+          <ul id="links-index">
+            <li>
+              <a
+                draggable="false"
+                ondragstart="'use strict'; event.preventDefault();"
+                href="/"
+                target="_top"
+                title="Go to index page."
+                >Index</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+    <footer>DP &#xA9; <%- year %></footer>
+  </body>
+</html>
