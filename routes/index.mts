@@ -17,8 +17,8 @@ import graycraft from '../source/graycraft.umd.js';
 
 const router = express.Router(),
   indexHandler: RequestHandler = (req, res) => {
-    const { HOSTNAME, PORT } = process.env,
-      host = HOSTNAME + ':' + PORT,
+    const { HOSTNAME, PORT_PROXY } = process.env,
+      host = HOSTNAME + ':' + PORT_PROXY,
       cssBuffer = nodeFs.readFileSync('public/stylesheets/style.css'),
       scriptBuffer = nodeFs.readFileSync('public/javascripts/graycraft.umd.js'),
       css = String(cssBuffer),
