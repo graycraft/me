@@ -12,7 +12,7 @@ import express from 'express';
 
 import nodeFs from 'node:fs';
 
-import fillSvg from '../library/graycraft.mts';
+import fillSvg, { SIZE } from '../library/graycraft.mts';
 import graycraft from '../source/graycraft.umd.js';
 
 const router = express.Router(),
@@ -25,7 +25,7 @@ const router = express.Router(),
       script = String(scriptBuffer),
       { color: colorQuery, size: sizeQuery } = req.query,
       color = String(colorQuery ?? ''),
-      size = Number(sizeQuery ?? 512),
+      size = Number(sizeQuery ?? SIZE),
       { drawCanvas, drawImage, drawSvg, hsl } = graycraft(size, color),
       canvas = drawCanvas(createCanvas),
       svg = fillSvg(drawSvg),

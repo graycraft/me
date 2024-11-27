@@ -20,6 +20,7 @@ import createError from 'http-errors';
 import logger from 'morgan';
 
 import { HTTP } from './library/constants.mts';
+import { SIZE } from './library/graycraft.mts';
 import routerIndex from './routes/index.mts';
 import graycraft from './source/graycraft.umd.js';
 
@@ -49,7 +50,7 @@ app.use(((req, res, next) => {
     css = String(cssBuffer),
     { color: colorQuery, size: sizeQuery } = req.query,
     color = String(colorQuery ?? ''),
-    size = Number(sizeQuery ?? 512),
+    size = Number(sizeQuery ?? SIZE),
     { getYear, hsl } = graycraft(size);
 
   res.render('404', {
