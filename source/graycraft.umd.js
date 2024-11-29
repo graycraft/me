@@ -6,23 +6,29 @@
  * @typedef {import("canvas/types").Canvas} Canvas
  * @typedef {{ x: number, y: number }[]} coords
  * @typedef {(width: number, height: number, type?: "pdf" | "svg") => Canvas} createCanvas
- * @typedef {(size: number, color?: string) => {
+ * @typedef {{
+ *   back: string;
+ *   hsl: string;
+ *   pathCraft: string;
+ *   pathGray: string;
+ *   round: boolean;
+ *   size: string;
+ *   sizeHalf: string;
+ *   translateY: number;
+ * }} RSvg
+ * @typedef {{
  *   drawCanvas: (createCanvas: createCanvas) => Canvas;
- *   drawImage: (canvas: Canvas & HTMLCanvasElement) => {
+ *   drawSvg: () => RSvg;
+ *   getYear: (date?: Date) => number;
+ *   hsl: string;
+ *   renderImage: (canvas: Canvas & HTMLCanvasElement) => {
  *     buffer?: Buffer;
  *     dataUrl?: string;
  *   };
- *   drawSvg: () => {
- *     hsl: string;
- *     pathCraft: string;
- *     pathGray: string;
- *     sizeHalf: string;
- *     translateY: number;
- *   };
- *   getYear: (date?: Date) => number;
- *   hsl: string;
- * }} result
- * @typedef {(( Window & typeof globalThis ) | result) & { Graycraft?: result; }} root
+ *   size: number;
+ * }} RFactory
+ * @typedef {(size: number, fore: string, back: string, round?: boolean) => RFactory} factory
+ * @typedef {(( Window & typeof globalThis ) | factory) & { Graycraft?: factory; }} root
  * @module src/graycraft
  */
 
@@ -37,7 +43,7 @@ var root = typeof self !== 'undefined' ? self : this;
    * @param {root} root Global root object (`window` in browsers, `global` in Node.js, etc.).
    * @param {(
    *   root: root & { size?: number; }
-   * ) => result} factory Factory function returning public methods and properties.
+   * ) => factory} factory Factory function returning public methods and properties.
    */
   function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -49,20 +55,28 @@ var root = typeof self !== 'undefined' ? self : this;
     }
   }
 )(root, function (root) {
-  return function graycraft(size, color) {
+  /**
+   * Factory function returning public methods and properties.
+   * @param {number} size Height or width of logotype.
+   * @param {string} fore Foreground color of logotype.
+   * @param {string} back Background color of logotype.
+   * @param {boolean} [round] Whether to apply round background to logotype or not.
+   * @returns {RFactory} Public methods and properties.
+   */
+  return function graycraft(size, fore, back, round) {
     var dx = size / 4,
       dy = ((size / 4) * Math.sqrt(3)) / 2,
       gray = getCoordinates('gray', dx, dy),
       craft = getCoordinates('craft', dx, dy),
       hue = daysToHue(daysInYear(new Date())),
-      hsl = color || 'hsl(' + hue + ', 50%, 50%)';
+      hsl = fore || 'hsl(' + hue + ', 50%, 50%)';
 
     return {
       drawCanvas,
-      drawImage,
       drawSvg,
       getYear,
       hsl,
+      renderImage,
       size,
     };
 
@@ -106,14 +120,16 @@ var root = typeof self !== 'undefined' ? self : this;
         ctx = canvas.getContext('2d');
 
       if (ctx) {
-        ctx.fillStyle = 'transparent';
-        ctx.fillRect(0, 0, size, size);
+        ctx.fillStyle = back;
         ctx.lineJoin = 'round';
         ctx.lineWidth = Number.EPSILON;
         ctx.scale(1 / (size / canvas.width), 1 / (size / canvas.height));
-        ctx.fillStyle = '#FFF';
         ctx.beginPath();
-        // ctx.ellipse(size / 2, size / 2, size / 2, size / 2, 0, 0, 2 * Math.PI);
+        if (round) {
+          ctx.ellipse(size / 2, size / 2, size / 2, size / 2, 0, 0, 2 * Math.PI);
+        } else {
+          ctx.fillRect(0, 0, size, size);
+        }
         ctx.closePath();
         ctx.fill();
         ctx.translate(0, (size - dy * 4) / 2);
@@ -141,71 +157,34 @@ var root = typeof self !== 'undefined' ? self : this;
     }
 
     /**
-     * Draw image from provided canvas by transforming it to URL object from blob (browser)
-     * or to buffer and data URL (server).
-     * @param {Canvas & HTMLCanvasElement} canvas
-     * @returns {{
-     *   buffer?: Buffer;
-     *   dataUrl?: string;
-     * }} Buffer and data URL of the canvas.
-     */
-    function drawImage(canvas) {
-      if (canvas.toBuffer && canvas.toDataURL) {
-        var buffer = canvas.toBuffer(),
-          dataUrl = canvas.toDataURL();
-
-        return {
-          buffer: buffer,
-          dataUrl: dataUrl,
-        };
-      } else {
-        canvas.toBlob(
-          /**
-           * @param {Blob | null} blob A file-like object of immutable, raw data.
-           */
-          function (blob) {
-            if (blob) {
-              /** blob:https://graycraft.me/32561fc1-5706-495f-8c9d-44710b03b190 */
-              /** @type {HTMLImageElement} */ (document.getElementById('logo-image')).src =
-                URL.createObjectURL(blob);
-            }
-          },
-          'image/png',
-        );
-
-        return {};
-      }
-    }
-
-    /**
      * Draw shapes on SVG element (client browser only).
-     * @returns {{
-     *   hsl: string;
-     *   pathCraft: string;
-     *   pathGray: string;
-     *   sizeHalf: string;
-     *   translateY: number;
-     * }} Parameters with which SVG were drawn, to replicate on the server.
+     * @returns {RSvg} Parameters with which SVG were drawn, to replicate on the server.
      */
     function drawSvg() {
       var sizeHalf = String(size / 2),
         translateY = (size - dy * 4) / 2;
 
       if (typeof document === 'object') {
-        var // circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'),
+        var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'),
           group = document.createElementNS('http://www.w3.org/2000/svg', 'g'),
           title = document.createElementNS('http://www.w3.org/2000/svg', 'title'),
           svg = document.getElementById('logo-svg');
 
-        // circle.setAttribute('cx', sizeHalf);
-        // circle.setAttribute('cy', sizeHalf);
-        // circle.setAttribute('fill', 'white');
-        // circle.setAttribute('r', sizeHalf);
+        if (round) {
+          circle.setAttribute('cx', sizeHalf);
+          circle.setAttribute('cy', sizeHalf);
+          circle.setAttribute('fill', back);
+          circle.setAttribute('r', sizeHalf);
+        }
         group.setAttribute('transform', `translate(0, ${translateY})`);
         title.textContent = 'Graycraft';
         if (svg) {
           svg.appendChild(title);
-          // svg.appendChild(circle);
+          if (round) {
+            svg.appendChild(circle);
+          } else {
+            svg.style.setProperty('background-color', back);
+          }
           svg.appendChild(group);
         }
 
@@ -252,9 +231,12 @@ var root = typeof self !== 'undefined' ? self : this;
       }
 
       return {
+        back,
         hsl,
         pathCraft,
         pathGray,
+        round: round || false,
+        size: String(size),
         sizeHalf,
         translateY,
       };
@@ -339,6 +321,44 @@ var root = typeof self !== 'undefined' ? self : this;
       var year = (date || new Date()).getUTCFullYear();
 
       return year;
+    }
+
+    /**
+     * Render image from provided canvas by transforming it to one of:
+     * - URL object from blob (browser);
+     * - buffer and data URL (server).
+     * @param {Canvas & HTMLCanvasElement} canvas
+     * @returns {{
+     *   buffer?: Buffer;
+     *   dataUrl?: string;
+     * }} Buffer and data URL of the canvas.
+     */
+    function renderImage(canvas) {
+      if (canvas.toBuffer && canvas.toDataURL) {
+        var buffer = canvas.toBuffer(),
+          dataUrl = canvas.toDataURL();
+
+        return {
+          buffer: buffer,
+          dataUrl: dataUrl,
+        };
+      } else {
+        canvas.toBlob(
+          /**
+           * @param {Blob | null} blob A file-like object of immutable, raw data.
+           */
+          function (blob) {
+            if (blob) {
+              /** blob:https://graycraft.me/32561fc1-5706-495f-8c9d-44710b03b190 */
+              /** @type {HTMLImageElement} */ (document.getElementById('logo-image')).src =
+                URL.createObjectURL(blob);
+            }
+          },
+          'image/png',
+        );
+
+        return {};
+      }
     }
   };
 });
