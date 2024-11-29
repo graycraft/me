@@ -20,7 +20,7 @@ import createError from 'http-errors';
 import logger from 'morgan';
 
 import { HTTP } from './library/constants.mts';
-import { SIZE } from './library/graycraft.mts';
+import { SIZE, SIZE_MIN } from './library/graycraft.mts';
 import routerIndex from './routes/index.mts';
 import graycraft from './source/graycraft.umd.js';
 
@@ -44,22 +44,23 @@ app.use('/', routerIndex);
  * Catch 404 and forward to error handler.
  */
 app.use(((req, res, next) => {
-  const { HOSTNAME, PORT_PROXY } = process.env,
-    host = HOSTNAME + ':' + PORT_PROXY,
+  const { HOSTNAME, PORT, PORT_PROXY } = process.env,
+    host = HOSTNAME + ':' + (req.app.get('env') === 'development' ? PORT : PORT_PROXY),
     cssBuffer = nodeFs.readFileSync('public/stylesheets/style.css'),
     css = String(cssBuffer),
-    { color: colorQuery, size: sizeQuery } = req.query,
-    color = String(colorQuery ?? ''),
-    size = Number(sizeQuery ?? SIZE),
-    { getYear, hsl } = graycraft(size);
+    { back: backQuery, fore: foreQuery, size: sizeQuery } = req.query,
+    back = String(backQuery ?? 'transparent'),
+    fore = String(foreQuery ?? ''),
+    size = Number(sizeQuery ?? SIZE) < SIZE_MIN ? SIZE_MIN : Number(sizeQuery ?? SIZE),
+    { getYear, hsl } = graycraft(size, fore, back);
 
   res.render('404', {
-    color,
+    back,
     css,
     host,
+    header: '404',
     hsl,
     imagePath: 'images/graycraft.png',
-    header: '404',
     paragraph: 'This page is not found on the server.',
     size,
     title: 'Not Found',

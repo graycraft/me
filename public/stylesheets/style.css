@@ -34,9 +34,21 @@ ul {
 ul li {
   white-space: nowrap;
 }
+
+#links-contacts a {
+  color: black;
+}
+#links-legacy a {
+  color: gray;
+}
 #wrapper {
   padding-bottom: 1.5rem;
 }
+
+.hidden {
+  height: 0;
+  visibility: hidden;
+}
 .logotype {
-  width: 100%;
+  display: block;
 }

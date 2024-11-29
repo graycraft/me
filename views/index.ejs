@@ -53,28 +53,28 @@
     <link href="/<%- imagePath %>" rel="apple-touch-icon" sizes="360x360" />
     <link href="/<%- imagePath %>" rel="icon" sizes="360x360" type="image/png" />
     <link href="/<%- imagePath %>" rel="mask-icon" />
-    <!--script
+    <script
       defer=""
       onerror="'use strict'; console.error('Can not load the script:', this);"
       src="/javascripts/graycraft.umd.js"
-    ></script-->
-    <!--script>
-      &lt;%- script %&gt;
+    ></script>
+    <script>
+      <%- script %>;
     </script>
     <script>
       "use strict";
 
       window.addEventListener("load", function () {
-        var graycraft = new window.Graycraft(<%- size %>, '<%- color %>')/* ,
-          canvas = graycraft.drawCanvas() */;
+        var graycraft = new window.Graycraft(<%- size %>, '<%- hsl %>', '<%- back %>', <%- round %>),
+          canvas = graycraft.drawCanvas();
 
-        // graycraft.drawImage(canvas);
+        graycraft.renderImage(canvas);
         graycraft.drawSvg();
       });
       document.onselectstart = function (event) {
         event.preventDefault();
       };
-    </script-->
+    </script>
     <style>
       <%- css %>
     </style>
@@ -87,11 +87,9 @@
         font-size: <%- 5 / 3 %>rem;
         line-height:  <%- (5 / 3) * 1.5 %>rem;
       }
-      #links-contacts a {
-        color: black;
-      }
-      #links-legacy a {
-        color: gray;
+      #links-legacy {
+        font-size: <%- 5 / 2.5 %>rem;
+        line-height:  <%- (5 / 2.5) * 1.5 %>rem;
       }
       #links-social {
         font-size: <%- 5 / 2 %>rem;
@@ -100,8 +98,15 @@
       #links-social a {
         color: <%- hsl %>;
       }
+      #wrapper {
+        margin: 0 auto;
+        max-width: <%- size %>px;
+        width: 100%;
+      }
       .logotype {
-        height: <%- size * 1.25 %>px;
+        max-height: <%- size %>px;
+        max-width: <%- size %>px;
+        width: 100%;
       }
     </style>
   </head>
@@ -110,42 +115,40 @@
     <main>
       <div id="wrapper">
         <!-- Image from base64 data URL generated on the server side (fast). -->
-        <!-- img
+        <img
           alt="&lt;img /&gt;"
-          class="logotype"
+          class="hidden logotype"
           draggable="false"
           loading="lazy"
           ondragstart="'use strict'; event.preventDefault();"
           onerror="'use strict'; console.error('Can not load the image:', this);"
-          src="&lt;%- image %&gt;"
-          style="float: right;"
+          src="<%- image %>"
           title="Graycraft"
-        / -->
+        />
         <!-- Image loading from a PNG file URL on a client side (slow). -->
-        <!-- img
+        <img
           alt="&lt;img /&gt;"
-          class="logotype"
+          class="hidden logotype"
           draggable="false"
           loading="lazy"
           ondragstart="'use strict'; event.preventDefault();"
           onerror="'use strict'; console.error('Can not load the image:', this);"
           src="/<%- imagePath %>"
           title="Graycraft"
-        / -->
+        />
         <!-- Image from a blob URL generated on a client side (slowest). -->
-        <!-- img
+        <img
           alt="&lt;img /&gt;"
-          class="logotype"
+          class="hidden logotype"
           draggable="false"
           id="logo-image"
           ondragstart="'use strict'; event.preventDefault();"
           onerror="'use strict'; console.error('Can not load the image:', this);"
-          style="float: right;"
           title="Graycraft"
-        / -->
+        />
         <!-- Canvas generated on a client side (slow). -->
-        <!-- canvas
-          class="logotype"
+        <canvas
+          class="hidden logotype"
           height="<%- size %>"
           id="logo-canvas"
           onerror="'use strict'; console.error('Can not load the canvas:', this);"
@@ -153,29 +156,21 @@
           width="<%- size %>"
         >
           Canvas API is not supported by your browser.
-        </canvas -->
+        </canvas>
         <!-- SVG generated on a client side (medium). -->
-        <!-- svg
-          class="logotype"
-          height="<%- size %>"
+        <svg
+          class="hidden logotype"
+          height="<%#- size #%>"
           id="logo-svg"
           onerror="'use strict'; console.error('Can not load the SVG:', this);"
           preserveAspectRatio="xMidYMid meet"
-          style="float: right;"
           viewBox="0 0 <%- size %> <%- size %>"
           width="<%- size %>"
         >
           SVG is not supported by your browser.
-        </svg -->
+        </svg>
         <!-- SVG generated on the server side (fastest). -->
-        <svg
-          class="logotype"
-          height="<%- size %>"
-          onerror="'use strict'; console.error('Can not load the SVG:', this);"
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 <%- size %> <%- size %>"
-          width="<%- size %>"
-        ><%- svg %></svg>
+        <%- svg %>
         <nav>
           <ul id="links-contacts">
             <li>
