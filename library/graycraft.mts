@@ -28,7 +28,6 @@ const templateSvg = (
   const { back, hsl, pathCraft, pathGray, round, size, sizeHalf, translateY } = drawSvg(),
     template = `<svg
       class="logotype"
-      height="${/* size */ ''}"
       onerror="'use strict'; console.error('Can not load the SVG:', this);"
       preserveAspectRatio="xMidYMid meet"
       style="background-color: ${round ? 'transparent' : back};"
