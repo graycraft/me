@@ -2,7 +2,8 @@
  * Generate Graycraft logotype with different methods to choose from.
  *
  * @see https://github.com/umdjs/umd/blob/master/templates/returnExports.js#L40
- * @see https://www.npmjs.com/package/canvas
+ * @see https://npm.im/canvas
+ * @see https://requirejs.org/docs/whyamd.html
  * @typedef {import("canvas/types").Canvas} Canvas
  * @typedef {{ x: number, y: number }[]} coords
  * @typedef {(width: number, height: number, type?: "pdf" | "svg") => Canvas} createCanvas
@@ -29,7 +30,7 @@
  * }} RFactory
  * @typedef {(size: number, fore: string, back: string, round?: boolean) => RFactory} factory
  * @typedef {(( Window & typeof globalThis ) | factory) & { Graycraft?: factory; }} root
- * @module src/graycraft
+ * @module source/graycraft.umd
  */
 
 'use strict';
