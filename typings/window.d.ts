@@ -1,1 +1,1 @@
-import type requirejs from "@types/requirejs"
+import type requirejs from '@types/requirejs';
