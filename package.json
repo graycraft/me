@@ -5,13 +5,13 @@
   "main": "index.mts",
   "private": true,
   "scripts": {
-    "dev": "node --loader ts-node/esm --watch ./index.mts",
-    "prettier-check": "prettier -c .",
-    "prettier-write": "prettier -w .",
-    "start": "node --loader ts-node/esm ./index.mts",
-    "test": "jest",
-    "tsc-compile": "tsc",
-    "tsc-config": "tsc --showConfig"
+    "node:watch": "node --env-file=.env --env-file=.env.local --env-file=.env.development --loader ts-node/esm --watch ./index.mts",
+    "prettier:check": "prettier -c .",
+    "prettier:write": "prettier -w .",
+    "preinstall": "./preinstall.sh",
+    "start": "node --env-file=.env --env-file=.env.local --env-file=.env.production --loader ts-node/esm ./index.mts",
+    "tsc:compile": "tsc",
+    "tsc:config": "tsc --showConfig"
   },
   "repository": {
     "type": "git",
