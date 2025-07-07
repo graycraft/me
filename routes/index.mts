@@ -7,7 +7,6 @@
 import type { RequestHandler } from 'express';
 
 import { Canvas, createCanvas } from 'canvas';
-import 'dotenv/config';
 import express from 'express';
 
 import nodeFs from 'node:fs';

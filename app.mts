@@ -14,7 +14,6 @@ import nodePath from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import cookieParser from 'cookie-parser';
-import 'dotenv/config';
 import express from 'express';
 import createError from 'http-errors';
 import logger from 'morgan';
