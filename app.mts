@@ -44,8 +44,8 @@ app.use('/', routerIndex);
  * Catch 404 and forward to error handler.
  */
 app.use(((req, res, next) => {
-  const { HOSTNAME, PORT, PORT_PROXY } = process.env,
-    host = HOSTNAME + ':' + (req.app.get('env') === 'development' ? PORT : PORT_PROXY),
+  const { DEPLOYMENT, HOSTNAME, PORT, PORT_PROXY } = process.env,
+    host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
     cssBuffer = nodeFs.readFileSync('public/stylesheets/style.css'),
     css = String(cssBuffer),
     { back: backQuery, fore: foreQuery, size: sizeQuery } = req.query,
@@ -73,7 +73,7 @@ app.use(((req, res, next) => {
  * Error handler.
  */
 app.use(((error, req, res) => {
-  /** Set locals, only providing error in development. */
+  /** Set locals, only providing error in development mode. */
   res.locals.message = error?.message;
   res.locals.error = req.app.get('env') === 'development' ? error : {};
 
