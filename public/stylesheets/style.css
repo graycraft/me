@@ -6,7 +6,7 @@ body {
    * Set a Courier-like font from Google Fonts.
    * This requires the font to be downloaded from Google CDN.
    * First page load repaint:
-   * + slow, if "Courier Prime" is not already vailable in a client OS.
+   * + slow, if "Courier Prime" is not already available in a client OS.
    * Subsequent page loads repaint:
    * + medium, with disabled network cache in a client browser.
    * + fast, with enabled network cache in a client browser.
@@ -21,13 +21,13 @@ body {
     'Nimbus Mono PS',
     /** Since Canonical Ubuntu 12.04 (discontinued in 24.04). */
     'FreeMono',
-    /** Crossplatform, usually not available in a client OS. */
+    /** Cross-platform, usually not available in a client OS. */
     'Courier PS',
-    /** Crossplatform, usually not available in a client OS. */
+    /** Cross-platform, usually not available in a client OS. */
     'Cutive Mono',
-    /** Crossplatform, usually not available in a client OS. */
+    /** Cross-platform, usually not available in a client OS. */
     'Everson Mono',
-    /** Crossplatform, usually not available in a client OS. */
+    /** Cross-platform, usually not available in a client OS. */
     'Prestige',
     /**
      * Since Microsoft Windows 3.1.
@@ -61,6 +61,9 @@ footer {
   line-height: 1.5rem;
   margin-top: -1.5rem;
 }
+footer a {
+  color: silver;
+}
 main {
   min-height: 100%;
 }
@@ -80,6 +83,7 @@ ul li {
   color: gray;
 }
 #wrapper {
+  margin: 0 auto;
   padding-bottom: 1.5rem;
 }
 
@@ -89,4 +93,5 @@ ul li {
 }
 .logotype {
   display: block;
+  width: 100%;
 }
