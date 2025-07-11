@@ -38,7 +38,7 @@ const templateSvg = (
     >
       SVG is not supported by your browser.
       <title>Graycraft</title>
-      ${round && `<circle cx="${sizeHalf}" cy="${sizeHalf}" fill="${back}" r="${sizeHalf}"></circle>`}
+      ${round ? `<circle cx="${sizeHalf}" cy="${sizeHalf}" fill="${back}" r="${sizeHalf}"></circle>` : ''}
       <g transform="translate(0, ${translateY})">
         <path
           d="${pathGray}"
