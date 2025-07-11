@@ -6,12 +6,11 @@ body {
    * Set a Courier-like font from Google Fonts.
    * This requires the font to be downloaded from Google CDN.
    * First page load repaint:
-   *   + slow, if "Courier Prime" is not already vailable in a client OS.
+   * + slow, if "Courier Prime" is not already vailable in a client OS.
    * Subsequent page loads repaint:
-   *   + medium, with disabled network cache in a client browser.
-   *   + fast, with enabled network cache in a client browser.
+   * + medium, with disabled network cache in a client browser.
+   * + fast, with enabled network cache in a client browser.
    * Or fallback to one of available fonts with similar appearance in a client OS (fastest).
-   *
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
    * @see https://www.w3.org/TR/CSS2/fonts.html#generic-font-families
    */
