@@ -36,8 +36,8 @@ const templateSvg = (
       viewBox="0 0 ${size} ${size}"
       width="${size}"
     >
-      SVG is not supported by your browser.
       <title>Graycraft</title>
+      <desc>SVG is not supported by your browser.</desc>
       ${round ? `<circle cx="${sizeHalf}" cy="${sizeHalf}" fill="${back}" r="${sizeHalf}"></circle>` : ''}
       <g transform="translate(0, ${translateY})">
         <path
