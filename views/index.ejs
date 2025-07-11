@@ -86,6 +86,7 @@
         font-size: <%- size / 12 %>px;
         line-height: <%- (size / 12) * 1.5 %>px;
       }
+
       #links-contacts {
         font-size: <%- 5 / 3 %>rem;
         line-height:  <%- (5 / 3) * 1.5 %>rem;
@@ -106,6 +107,7 @@
         max-width: <%- size %>px;
         width: 100%;
       }
+
       .logotype {
         max-height: <%- size %>px;
         max-width: <%- size %>px;
@@ -140,6 +142,12 @@
           title="Graycraft"
         />
         <!-- Image from a blob URL generated on a client side (slowest). -->
+        <% /* %>
+          The source is set dynamically by the script above after page load.
+          Before that, attribute `src` is required for tag `img` and must be non-empty to pass W3C (X)HTML5 validation.
+          Therefore any image URL is applicable here, shortest possible and not requiring download is better.
+          @see https://stackoverflow.com/a/13139830
+        <% */ %>
         <img
           alt="&lt;img /&gt;"
           class="hidden logotype"
@@ -147,7 +155,7 @@
           id="logo-image"
           ondragstart="'use strict'; event.preventDefault();"
           onerror="'use strict'; console.error('Can not load the image:', this);"
-          src=""
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           title="Graycraft"
         />
         <!-- Canvas generated on a client side (slow). -->
