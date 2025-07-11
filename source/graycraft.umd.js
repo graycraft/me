@@ -326,8 +326,8 @@ var root = typeof self !== 'undefined' ? self : this;
 
     /**
      * Render image from provided canvas by transforming it to one of:
-     * - URL object from blob (browser);
-     * - buffer and data URL (server).
+     * + URL object from blob (browser);
+     * + buffer and data URL (server).
      * @param {Canvas & HTMLCanvasElement} canvas
      * @returns {{
      *   buffer?: Buffer;
