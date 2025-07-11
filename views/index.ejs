@@ -147,6 +147,7 @@
           id="logo-image"
           ondragstart="'use strict'; event.preventDefault();"
           onerror="'use strict'; console.error('Can not load the image:', this);"
+          src=""
           title="Graycraft"
         />
         <!-- Canvas generated on a client side (slow). -->
@@ -171,7 +172,7 @@
           viewBox="0 0 <%- size %> <%- size %>"
           width="<%- size %>"
         >
-          SVG is not supported by your browser.
+          <desc>SVG is not supported by your browser.</desc>
         </svg>
         <!-- SVG generated on the server side (fastest). -->
         <%- svg %>
