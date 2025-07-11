@@ -2,9 +2,48 @@ body {
   background-color: white;
   color: gray;
   margin: 0;
-  font-family: 'Roboto Mono', FreeMono, 'Courier New', Courier, ui-monospace, monospace;
-  font-weight: 700;
+  /**
+   * Set a Courier-like font from Google Fonts.
+   * This requires the font to be downloaded from Google CDN.
+   * First page load repaint:
+   *   + slow, if "Courier Prime" is not already vailable in a client OS.
+   * Subsequent page loads repaint:
+   *   + medium, with disabled network cache in a client browser.
+   *   + fast, with enabled network cache in a client browser.
+   * Or fallback to one of available fonts with similar appearance in a client OS (fastest).
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
+   * @see https://www.w3.org/TR/CSS2/fonts.html#generic-font-families
+   */
+  font-family:
+    /** @see https://fonts.google.com/specimen/Courier+Prime */
+    'Courier Prime',
+    /** Since Canonical Ubuntu 12.04. */
+    'Nimbus Mono PS',
+    /** Since Canonical Ubuntu 12.04 (discontinued in 24.04). */
+    'FreeMono',
+    /** Crossplatform, usually not available in a client OS. */
+    'Courier PS',
+    /** Crossplatform, usually not available in a client OS. */
+    'Cutive Mono',
+    /** Crossplatform, usually not available in a client OS. */
+    'Everson Mono',
+    /** Crossplatform, usually not available in a client OS. */
+    'Prestige',
+    /**
+     * Since Microsoft Windows 3.1.
+     * Might fallback to other monospace fonts with significantly different appearance (e.g. Liberation Mono).
+     */
+    'Courier New',
+    /**
+     * IBM legacy.
+     * Might fallback to other monospace fonts with significantly different appearance (e.g. Liberation Mono).
+     */
+    'Courier',
+    ui-monospace,
+    monospace;
   font-style: normal;
+  font-weight: 700;
   text-align: center;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
