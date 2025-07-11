@@ -180,7 +180,7 @@ var root = typeof self !== 'undefined' ? self : this;
         group.setAttribute('transform', `translate(0, ${translateY})`);
         title.textContent = 'Graycraft';
         if (svg) {
-          svg.appendChild(title);
+          svg.prepend(title);
           if (round) {
             svg.appendChild(circle);
           } else {
