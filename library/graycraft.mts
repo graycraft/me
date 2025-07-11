@@ -26,8 +26,10 @@ const templateSvg = (
   },
 ) => {
   const { back, hsl, pathCraft, pathGray, round, size, sizeHalf, translateY } = drawSvg(),
+    /** Setting height keeps empty space at the top and bottom of a scaled SVG image. */
     template = `<svg
       class="logotype"
+      ${/* height="" */ ''}
       onerror="'use strict'; console.error('Can not load the SVG:', this);"
       preserveAspectRatio="xMidYMid meet"
       style="background-color: ${round ? 'transparent' : back};"
