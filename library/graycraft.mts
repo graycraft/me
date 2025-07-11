@@ -5,7 +5,7 @@
  * @module library/graycraft
  */
 
-export const SIZE: number = 540;
+export const SIZE: number = 480;
 export const SIZE_MIN: number = 256;
 
 /**
