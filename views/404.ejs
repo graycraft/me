@@ -31,28 +31,18 @@
     <meta content="https://graycraft.me/" property="og:url" />
     <title><%- title %></title>
     <base href="//<%- host %>" target="_blank" />
+    <link href="//fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="//fonts.gstatic.com" rel="preconnect" />
+    <link href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap" rel="stylesheet" />
     <link href="https://graycraft.me" rel="canonical" />
     <link href="/<%- imagePath %>" rel="icon" />
-    <!--link
-      href="//fonts.googleapis.com"
-      rel="preconnect"
-    />
-    <link
-      crossorigin=""
-      href="//fonts.gstatic.com"
-      rel="preconnect"
-    />
-    <link
-      href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="/stylesheets/style.css"
-      rel="stylesheet"
-    />-->
     <link href="/<%- imagePath %>" rel="apple-touch-icon" sizes="360x360" />
     <link href="/<%- imagePath %>" rel="icon" sizes="360x360" type="image/png" />
     <link href="/<%- imagePath %>" rel="mask-icon" />
+    <!--link
+      href="/stylesheets/style.css"
+      rel="stylesheet"
+    />-->
     <style>
       <%- css %>
     </style>
@@ -61,6 +51,7 @@
         font-size: <%- size / 12 %>px;
         line-height: <%- (size / 12) * 1.5 %>px;
       }
+
       #description {
         font-size: <%- 5 / 3 %>rem;
         line-height: <%- (5 / 3) * 1.5 %>rem;
@@ -87,17 +78,19 @@
         <h1 id="title"><%- header %></h1>
         <p id="description"><%- paragraph %></p>
         <nav>
-          <ul id="links-index">
-            <li>
-              <a
-                draggable="false"
-                href="/"
-                ondragstart="'use strict'; event.preventDefault();"
-                target="_top"
-                title="Go to the index page."
-              >Index</a>
-            </li>
-          </ul>
+          <div id="nav-wrapper">
+            <ul id="links-index">
+              <li>
+                <a
+                  draggable="false"
+                  href="/"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  target="_top"
+                  title="Go to the index page."
+                >Index</a>
+              </li>
+            </ul>
+          </div>
         </nav>
       </div>
     </main>
