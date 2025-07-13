@@ -104,150 +104,154 @@
     <noscript>JavaScript is not supported by your browser.</noscript>
     <main>
       <div id="wrapper">
-        <!-- Image from base64 data URL generated on the server side (fast). -->
-        <img
-          alt="&lt;img /&gt;"
-          class="hidden logotype"
-          draggable="false"
-          loading="lazy"
-          ondragstart="'use strict'; event.preventDefault();"
-          onerror="'use strict'; console.error('Can not load the image:', this);"
-          src="<%- image %>"
-          title="Graycraft"
-        />
-        <!-- Image loading from a PNG file URL on a client side (slow). -->
-        <img
-          alt="&lt;img /&gt;"
-          class="hidden logotype"
-          draggable="false"
-          loading="lazy"
-          ondragstart="'use strict'; event.preventDefault();"
-          onerror="'use strict'; console.error('Can not load the image:', this);"
-          src="/<%- imagePath %>"
-          title="Graycraft"
-        />
-        <!-- Image from a blob URL generated on a client side (slowest). -->
-        <% /* %>
-          The source is set dynamically by the script above after page load.
-          Before that, attribute `src` is required for tag `img` and must be non-empty to pass W3C (X)HTML5 validation.
-          Therefore any image URL is applicable here, shortest possible and not requiring download is better.
-          @see https://stackoverflow.com/a/13139830
-        <% */ %>
-        <img
-          alt="&lt;img /&gt;"
-          class="hidden logotype"
-          draggable="false"
-          id="logo-image"
-          ondragstart="'use strict'; event.preventDefault();"
-          onerror="'use strict'; console.error('Can not load the image:', this);"
-          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-          title="Graycraft"
-        />
-        <!-- Canvas generated on a client side (slow). -->
-        <canvas
-          class="hidden logotype"
-          height="<%- size %>"
-          id="logo-canvas"
-          onerror="'use strict'; console.error('Can not load the canvas:', this);"
-          title="Graycraft"
-          width="<%- size %>"
-        >
-          Canvas API is not supported by your browser.
-        </canvas>
-        <!-- SVG generated on a client side (medium). -->
-        <%# Setting height keeps empty space at the top and bottom of a scaled SVG image. %>
-        <svg
-          class="hidden logotype"
-          <%# height="" %>
-          id="logo-svg"
-          onerror="'use strict'; console.error('Can not load the SVG:', this);"
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 <%- size %> <%- size %>"
-          width="<%- size %>"
-        >
-          <desc>SVG is not supported by your browser.</desc>
-        </svg>
-        <!-- SVG generated on the server side (fastest). -->
-        <%- svg %>
+        <header>
+          <!-- Image from base64 data URL generated on the server side (fast). -->
+          <img
+            alt="&lt;img /&gt;"
+            class="hidden logotype"
+            draggable="false"
+            loading="lazy"
+            ondragstart="'use strict'; event.preventDefault();"
+            onerror="'use strict'; console.error('Can not load the image:', this);"
+            src="<%- image %>"
+            title="Graycraft"
+          />
+          <!-- Image loading from a PNG file URL on a client side (slow). -->
+          <img
+            alt="&lt;img /&gt;"
+            class="hidden logotype"
+            draggable="false"
+            loading="lazy"
+            ondragstart="'use strict'; event.preventDefault();"
+            onerror="'use strict'; console.error('Can not load the image:', this);"
+            src="/<%- imagePath %>"
+            title="Graycraft"
+          />
+          <!-- Image from a blob URL generated on a client side (slowest). -->
+          <% /* %>
+            The source is set dynamically by the script above after page load.
+            Before that, attribute `src` is required for tag `img` and must be non-empty to pass W3C (X)HTML5 validation.
+            Therefore any image URL is applicable here, shortest possible and not requiring download is better.
+            @see https://stackoverflow.com/a/13139830
+          <% */ %>
+          <img
+            alt="&lt;img /&gt;"
+            class="hidden logotype"
+            draggable="false"
+            id="logo-image"
+            ondragstart="'use strict'; event.preventDefault();"
+            onerror="'use strict'; console.error('Can not load the image:', this);"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            title="Graycraft"
+          />
+          <!-- Canvas generated on a client side (slow). -->
+          <canvas
+            class="hidden logotype"
+            height="<%- size %>"
+            id="logo-canvas"
+            onerror="'use strict'; console.error('Can not load the canvas:', this);"
+            title="Graycraft"
+            width="<%- size %>"
+          >
+            Canvas API is not supported by your browser.
+          </canvas>
+          <!-- SVG generated on a client side (medium). -->
+          <%# Setting height keeps empty space at the top and bottom of a scaled SVG image. %>
+          <svg
+            class="hidden logotype"
+            <%# height="" %>
+            id="logo-svg"
+            onerror="'use strict'; console.error('Can not load the SVG:', this);"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 <%- size %> <%- size %>"
+            width="<%- size %>"
+          >
+            <desc>SVG is not supported by your browser.</desc>
+          </svg>
+          <!-- SVG generated on the server side (fastest). -->
+          <%- svg %>
+        </header>
         <nav>
-          <ul id="links-contacts">
-            <li>
-              <a
-                draggable="false"
-                href="https://t.me/graycraft"
-                ondragstart="'use strict'; event.preventDefault();"
-                rel="nofollow noopener noreferrer"
-                title="My contact on the Telegram."
-              >t.me/graycraft</a>
-            </li>
-            <li>
-              <a
-                draggable="false"
-                href="mailto:graycraft@pm.me"
-                ondragstart="'use strict'; event.preventDefault();"
-                rel="nofollow noopener noreferrer"
-                title="My email address."
-              >graycraft@pm.me</a>
-            </li>
-          </ul>
-          <ul id="links-social">
-            <li>
-              <a
-                draggable="false"
-                href="https://github.com/graycraft"
-                ondragstart="'use strict'; event.preventDefault();"
-                rel="nofollow noopener noreferrer"
-                title="My repositories on the GitHub."
-              >GitHub</a>
-            </li>
-            <li>
-              <a
-                draggable="false"
-                href="https://ekaterinburg.hh.ru/resume/b70500c3ff0ed1a9af0039ed1f63615446704f"
-                ondragstart="'use strict'; event.preventDefault();"
-                rel="nofollow noopener noreferrer"
-                title="My CV on the HeadHunter."
-              >HeadHunter</a>
-            </li>
-            <li>
-              <a
-                draggable="false"
-                href="https://www.linkedin.com/in/dmitriy-papulovskiy-0b779b172"
-                ondragstart="'use strict'; event.preventDefault();"
-                rel="nofollow noopener noreferrer"
-                title="My profile on the LinkedIn."
-              >LinkedIn</a>
-            </li>
-          </ul>
-          <ul id="links-legacy">
-            <li>
-              <a
-                draggable="false"
-                href="https://freelance.ru/graycraft"
-                ondragstart="'use strict'; event.preventDefault();"
-                rel="nofollow noopener noreferrer"
-                title="My first works in WebDev."
-              >Freelance</a>
-            </li>
-            <li>
-              <a
-                draggable="false"
-                href="https://jsfiddle.net/u/graycraft"
-                ondragstart="'use strict'; event.preventDefault();"
-                rel="nofollow noopener noreferrer"
-                title="My experiments with JavaScript."
-              >JSFiddle</a>
-            </li>
-            <li>
-              <a
-                draggable="false"
-                href="https://web.archive.org/web/20180830010001/https://graycraft.io/#/about"
-                ondragstart="'use strict'; event.preventDefault();"
-                rel="nofollow noopener noreferrer"
-                title="My legacy personal site."
-              >graycraft.io</a>
-            </li>
-          </ul>
+          <div id="nav-wrapper">
+            <ul id="links-contacts">
+              <li>
+                <a
+                  draggable="false"
+                  href="https://t.me/graycraft"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  rel="nofollow noopener noreferrer"
+                  title="My contact on the Telegram."
+                >t.me/graycraft</a>
+              </li>
+              <li>
+                <a
+                  draggable="false"
+                  href="mailto:graycraft@pm.me"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  rel="nofollow noopener noreferrer"
+                  title="My email address."
+                >graycraft@pm.me</a>
+              </li>
+            </ul>
+            <ul id="links-social">
+              <li>
+                <a
+                  draggable="false"
+                  href="https://github.com/graycraft"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  rel="nofollow noopener noreferrer"
+                  title="My repositories on the GitHub."
+                >GitHub</a>
+              </li>
+              <li>
+                <a
+                  draggable="false"
+                  href="https://ekaterinburg.hh.ru/resume/b70500c3ff0ed1a9af0039ed1f63615446704f"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  rel="nofollow noopener noreferrer"
+                  title="My CV on the HeadHunter."
+                >HeadHunter</a>
+              </li>
+              <li>
+                <a
+                  draggable="false"
+                  href="https://www.linkedin.com/in/dmitriy-papulovskiy-0b779b172"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  rel="nofollow noopener noreferrer"
+                  title="My profile on the LinkedIn."
+                >LinkedIn</a>
+              </li>
+            </ul>
+            <ul id="links-legacy">
+              <li>
+                <a
+                  draggable="false"
+                  href="https://freelance.ru/graycraft"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  rel="nofollow noopener noreferrer"
+                  title="My first works in WebDev."
+                >Freelance</a>
+              </li>
+              <li>
+                <a
+                  draggable="false"
+                  href="https://jsfiddle.net/u/graycraft"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  rel="nofollow noopener noreferrer"
+                  title="My experiments with JavaScript."
+                >JSFiddle</a>
+              </li>
+              <li>
+                <a
+                  draggable="false"
+                  href="https://web.archive.org/web/20180830010001/https://graycraft.io/#/about"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  rel="nofollow noopener noreferrer"
+                  title="My legacy personal site."
+                >graycraft.io</a>
+              </li>
+            </ul>
+          </div>
         </nav>
       </div>
     </main>
