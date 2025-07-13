@@ -51,7 +51,7 @@ app.use(((req, res, next) => {
     back = String(backQuery ?? 'transparent'),
     fore = String(foreQuery ?? ''),
     size = Number(sizeQuery ?? SIZE) < SIZE_MIN ? SIZE_MIN : Number(sizeQuery ?? SIZE),
-    { getYear, hsl } = graycraft(size, fore, back);
+    { getYear, hsl, hslLight } = graycraft(size, fore, back);
 
   res.render('404', {
     back,
@@ -59,6 +59,7 @@ app.use(((req, res, next) => {
     host,
     header: '404',
     hsl,
+    hslLight,
     imagePath: 'images/graycraft.png',
     paragraph: 'This page is not found on the server.',
     size,
