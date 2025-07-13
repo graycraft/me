@@ -22,6 +22,7 @@
  *   drawSvg: () => RSvg;
  *   getYear: (date?: Date) => number;
  *   hsl: string;
+ *   hslLight: string;
  *   renderImage: (canvas: Canvas & HTMLCanvasElement) => {
  *     buffer?: Buffer;
  *     dataUrl?: string;
@@ -70,13 +71,15 @@ var root = typeof self !== 'undefined' ? self : this;
       gray = getCoordinates('gray', dx, dy),
       craft = getCoordinates('craft', dx, dy),
       hue = daysToHue(daysInYear(new Date())),
-      hsl = fore || 'hsl(' + hue + ', 50%, 50%)';
+      hsl = fore || 'hsl(' + hue + ', 50%, 50%)',
+      hslLight = fore || 'hsl(' + hue + ', 93.75%, 93.75%)';
 
     return {
       drawCanvas,
       drawSvg,
       getYear,
       hsl,
+      hslLight,
       renderImage,
       size,
     };
