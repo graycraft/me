@@ -36,26 +36,47 @@
     <link href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap" rel="stylesheet" />
     <link href="https://graycraft.me" rel="canonical" />
     <link href="/<%- imagePath %>" rel="icon" />
-    <!--link
-      href="//fonts.googleapis.com"
-      rel="preconnect"
-    />
-    <link
-      crossorigin=""
-      href="//fonts.gstatic.com"
-      rel="preconnect"
-    />
-    <link
-      href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="/stylesheets/style.css"
-      rel="stylesheet"
-    />-->
     <link href="/<%- imagePath %>" rel="apple-touch-icon" sizes="360x360" />
     <link href="/<%- imagePath %>" rel="icon" sizes="360x360" type="image/png" />
     <link href="/<%- imagePath %>" rel="mask-icon" />
+    <!--link
+      href="/stylesheets/style.css"
+      rel="stylesheet"
+    />-->
+    <style>
+      <%- css %>
+    </style>
+    <style>
+      body {
+        font-size: <%- size / 12 %>px;
+        line-height: <%- (size / 12) * 1.5 %>px;
+      }
+
+      .logotype {
+        max-height: <%- size %>px;
+        max-width: <%- size %>px;
+      }
+
+      #links-contacts {
+        font-size: <%- 5 / 3 %>rem;
+        line-height:  <%- (5 / 3) * 1.5 %>rem;
+      }
+      #links-legacy {
+        font-size: <%- 5 / 2.5 %>rem;
+        line-height:  <%- (5 / 2.5) * 1.5 %>rem;
+      }
+      #links-social {
+        font-size: <%- 5 / 2 %>rem;
+        line-height:  <%- (5 / 2) * 1.5 %>rem;
+      }
+      #links-social a {
+        color: <%- hsl %>;
+      }
+      #wrapper {
+        max-width: <%- size %>px;
+        width: 100%;
+      }
+    </style>
     <script
       defer=""
       onerror="'use strict'; console.error('Can not load the script:', this);"
@@ -78,40 +99,6 @@
         event.preventDefault();
       };
     </script>
-    <style>
-      <%- css %>
-    </style>
-    <style>
-      body {
-        font-size: <%- size / 12 %>px;
-        line-height: <%- (size / 12) * 1.5 %>px;
-      }
-
-      #links-contacts {
-        font-size: <%- 5 / 3 %>rem;
-        line-height:  <%- (5 / 3) * 1.5 %>rem;
-      }
-      #links-legacy {
-        font-size: <%- 5 / 2.5 %>rem;
-        line-height:  <%- (5 / 2.5) * 1.5 %>rem;
-      }
-      #links-social {
-        font-size: <%- 5 / 2 %>rem;
-        line-height:  <%- (5 / 2) * 1.5 %>rem;
-      }
-      #links-social a {
-        color: <%- hsl %>;
-      }
-      #wrapper {
-        max-width: <%- size %>px;
-        width: 100%;
-      }
-
-      .logotype {
-        max-height: <%- size %>px;
-        max-width: <%- size %>px;
-      }
-    </style>
   </head>
   <body>
     <noscript>JavaScript is not supported by your browser.</noscript>
