@@ -75,27 +75,38 @@
         color: <%- hsl %>;
       }
     </style>
-    <script
+    <!--script
       defer=""
       onerror="'use strict'; console.error('Can not load the script:', this);"
       src="/javascripts/graycraft.umd.js"
-    ></script>
+    ></script-->
     <script>
       <%- script %>;
     </script>
     <script>
-      "use strict";
+      'use strict';
 
+      console.log(String.raw`%c
+      ____  _____    ___  _     _ ____  _____    ___   ____ _____
+     / ___\|  __ \  / _ \| |   | | ___\|  __ \  / _ \ |  __|_   _|
+    / /   _| |__\ \/ /_\ \\ \_/ / /    | |__\ \/ /_\ \| |__  | |
+    \ \__| |  __  /  ___  \\   /\ \____|  __  /  ___  |  __| | |
+     \_____|_|  \_|_|   |_| |_|  \____/|_|  \_|_|   |_|_|    |_|
+
+    because gray matters
+      `, 'color: <%- rgb %>;');
+
+      document.onselectstart = function (event) {
+        event.preventDefault();
+      };
       window.addEventListener("load", function () {
         var graycraft = new window.Graycraft(<%- size %>, '<%- hsl %>', '<%- back %>', <%- round %>),
           canvas = graycraft.drawCanvas();
 
         graycraft.renderImage(canvas);
         graycraft.drawSvg();
+        console.info('COTD (Color Of The Day): ' + '<%- rgb %>');
       });
-      document.onselectstart = function (event) {
-        event.preventDefault();
-      };
     </script>
   </head>
   <body>
