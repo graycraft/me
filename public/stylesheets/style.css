@@ -1,6 +1,6 @@
 body {
   background-color: white;
-  color: gray;
+  color: black;
   margin: 0;
   /**
    * Set a Courier-like font from Google Fonts.
@@ -43,6 +43,7 @@ body {
     monospace;
   font-style: normal;
   font-weight: 700;
+  min-width: 288px;
   text-align: center;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -67,6 +68,20 @@ footer a {
 main {
   min-height: 100%;
 }
+h1 {
+  margin: 0;
+}
+header {
+  margin: 0 auto;
+  max-width: 480px;
+}
+nav {
+  line-height: 10vh;
+}
+p {
+  color: gray;
+  margin: 0
+}
 ul {
   list-style-type: none;
   margin: 0;
@@ -76,22 +91,26 @@ ul li {
   white-space: nowrap;
 }
 
-#links-contacts a {
-  color: black;
-}
-#links-legacy a {
-  color: gray;
-}
-#wrapper {
-  margin: 0 auto;
-  padding-bottom: 1.5rem;
-}
-
 .hidden {
   height: 0;
   visibility: hidden;
 }
 .logotype {
   display: block;
+  width: 100%;
+}
+
+#links-contacts a {
+  color: black;
+}
+#links-legacy a {
+  color: gray;
+}
+#nav-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+#wrapper {
+  padding-bottom: 1.5rem;
   width: 100%;
 }
