@@ -23,10 +23,13 @@
  *   getYear: (date?: Date) => number;
  *   hsl: string;
  *   hslLight: string;
+ *   hslToRgb: (h: number, s: number, l: number) => number[];
+ *   hue: number;
  *   renderImage: (canvas: Canvas & HTMLCanvasElement) => {
  *     buffer?: Buffer;
  *     dataUrl?: string;
  *   };
+ *   rgb: string;
  *   size: number;
  * }} RFactory
  * @typedef {(size: number, fore: string, back: string, round?: boolean) => RFactory} factory
@@ -72,7 +75,8 @@ var root = typeof self !== 'undefined' ? self : this;
       craft = getCoordinates('craft', dx, dy),
       hue = daysToHue(daysInYear(new Date())),
       hsl = fore || 'hsl(' + hue + ', 50%, 50%)',
-      hslLight = fore || 'hsl(' + hue + ', 93.75%, 93.75%)';
+      hslLight = fore || 'hsl(' + hue + ', 93.75%, 93.75%)',
+      rgb = '#' + hslToRgb(hue / 360, .5, .5).map(value => value.toString(16)).join('');
 
     return {
       drawCanvas,
@@ -80,7 +84,10 @@ var root = typeof self !== 'undefined' ? self : this;
       getYear,
       hsl,
       hslLight,
+      hslToRgb,
+      hue,
       renderImage,
+      rgb,
       size,
     };
 
@@ -325,6 +332,48 @@ var root = typeof self !== 'undefined' ? self : this;
       var year = (date || new Date()).getUTCFullYear();
 
       return year;
+    }
+
+    /**
+     * Converts an HSL color model to RGB representation.
+     * @see http://en.wikipedia.org/wiki/HSL_color_space
+     * @param {number} hue Hue.
+     * @param {number} saturation Saturation.
+     * @param {number} lightness Lightness.
+     * @return {number[]} RGB model.
+     */
+    function hslToRgb(hue, saturation, lightness) {
+      var blue, green, red;
+
+      if (saturation) {
+        var saturationShifted = lightness < 0.5 ?
+            lightness * (1 + saturation) :
+            lightness + saturation - lightness * saturation,
+          lightnessShifted = 2 * lightness - saturationShifted;
+
+        blue = convert(hue - 1 / 3, saturationShifted, lightnessShifted);
+        green = convert(hue, saturationShifted, lightnessShifted);
+        red = convert(hue + 1 / 3, saturationShifted, lightnessShifted);
+
+        /**
+         * Convert each color attribute individually.
+         * @param {number} h Shifted hue.
+         * @param {number} s Shifted saturation.
+         * @param {number} l Shifted lightness.
+         * @return {number} A color of RGB model.
+         */
+        function convert(h, s, l) {
+          if (h < 0) h += 1;
+          if (h > 1) h -= 1;
+          if (h < 1/6) return l + (s - l) * 6 * h;
+          if (h < 1/2) return s;
+          if (h < 2/3) return l + (s - l) * (2 / 3 - h) * 6;
+
+          return l;
+        }
+      } else blue = green = red = lightness;
+
+      return [Math.round(red * 255), Math.round(green * 255), Math.round(blue * 255)];
     }
 
     /**
