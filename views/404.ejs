@@ -46,6 +46,12 @@
       <%- css %>
     </style>
     <style>
+      a:hover {
+        color: <%- hsl %> !important;
+      }
+      a[target="_blank"] {
+        background-image: url("data:image/svg+xml,<%- externalLink %>");
+      }
       body {
         font-size: <%- size / 12 %>px;
         line-height: <%- (size / 12) * 1.5 %>px;
