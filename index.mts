@@ -8,7 +8,6 @@
  */
 
 import debug from 'debug';
-import 'dotenv/config';
 
 import nodeHttp from 'node:http';
 

@@ -1,10 +1,61 @@
+@charset "utf-8";
+
+a:focus {
+  background-color: white;
+  outline: 0 solid transparent;
+}
+a[target="_blank"] {
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: 0.75em;
+  padding-right: 1em;
+}
 body {
   background-color: white;
-  color: gray;
+  color: black;
   margin: 0;
-  font-family: 'Roboto Mono', FreeMono, 'Courier New', Courier, ui-monospace, monospace;
-  font-weight: 700;
+  /**
+   * Set a Courier-like font from Google Fonts.
+   * This requires the font to be downloaded from Google CDN.
+   * First page load repaint:
+   * + slow, if "Courier Prime" is not already available in a client OS.
+   * Subsequent page loads repaint:
+   * + medium, with disabled network cache in a client browser.
+   * + fast, with enabled network cache in a client browser.
+   * Or fallback to one of available fonts with similar appearance in a client OS (fastest).
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
+   * @see https://www.w3.org/TR/CSS2/fonts.html#generic-font-families
+   */
+  font-family:
+    /** @see https://fonts.google.com/specimen/Courier+Prime */
+    'Courier Prime',
+    /** Since Canonical Ubuntu 12.04. */
+    'Nimbus Mono PS',
+    /** Since Canonical Ubuntu 12.04 (discontinued in 24.04). */
+    'FreeMono',
+    /** Cross-platform, usually not available in a client OS. */
+    'Courier PS',
+    /** Cross-platform, usually not available in a client OS. */
+    'Cutive Mono',
+    /** Cross-platform, usually not available in a client OS. */
+    'Everson Mono',
+    /** Cross-platform, usually not available in a client OS. */
+    'Prestige',
+    /**
+     * Since Microsoft Windows 3.1.
+     * Might fallback to other monospace fonts with significantly different appearance (e.g. Liberation Mono).
+     */
+    'Courier New',
+    /**
+     * IBM legacy.
+     * Might fallback to other monospace fonts with significantly different appearance (e.g. Liberation Mono).
+     */
+    'Courier',
+    ui-monospace,
+    monospace;
   font-style: normal;
+  font-weight: 700;
+  min-width: 288px;
   text-align: center;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -23,8 +74,25 @@ footer {
   line-height: 1.5rem;
   margin-top: -1.5rem;
 }
+footer a {
+  color: silver;
+}
 main {
   min-height: 100%;
+}
+h1 {
+  margin: 0;
+}
+header {
+  margin: 0 auto;
+  max-width: 480px;
+}
+nav {
+  line-height: 10vh;
+}
+p {
+  color: gray;
+  margin: 0
 }
 ul {
   list-style-type: none;
@@ -34,9 +102,27 @@ ul {
 ul li {
   white-space: nowrap;
 }
-#wrapper {
-  padding-bottom: 1.5rem;
+
+.hidden {
+  height: 0;
+  visibility: hidden;
 }
 .logotype {
+  display: block;
+  width: 100%;
+}
+
+#links-contacts a {
+  color: black;
+}
+#links-legacy a {
+  color: gray;
+}
+#nav-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+#wrapper {
+  padding-bottom: 1.5rem;
   width: 100%;
 }
