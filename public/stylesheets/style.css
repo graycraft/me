@@ -1,3 +1,15 @@
+@charset "utf-8";
+
+a:focus {
+  background-color: white;
+  outline: 0 solid transparent;
+}
+a[target="_blank"] {
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: 0.75em;
+  padding-right: 1em;
+}
 body {
   background-color: white;
   color: black;
