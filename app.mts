@@ -44,6 +44,8 @@ app.use('/', routerIndex);
  */
 app.use(((req, res, next) => {
   const { DEPLOYMENT, HOSTNAME, PORT, PORT_PROXY } = process.env,
+    externalLinkBuffer = nodeFs.readFileSync('public/images/external_link.svg'),
+    externalLink = global.encodeURIComponent(String(externalLinkBuffer)),
     host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
     cssBuffer = nodeFs.readFileSync('public/stylesheets/style.css'),
     css = String(cssBuffer),
@@ -56,6 +58,7 @@ app.use(((req, res, next) => {
   res.render('404', {
     back,
     css,
+    externalLink,
     host,
     header: '404',
     hsl,

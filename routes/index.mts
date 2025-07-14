@@ -17,6 +17,8 @@ import graycraft from '../source/graycraft.umd.js';
 const router = express.Router(),
   indexHandler: RequestHandler = (req, res) => {
     const { DEPLOYMENT, HOSTNAME, PORT, PORT_PROXY } = process.env,
+      externalLinkBuffer = nodeFs.readFileSync('public/images/external_link.svg'),
+      externalLink = global.encodeURIComponent(String(externalLinkBuffer)),
       host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
       cssBuffer = nodeFs.readFileSync('public/stylesheets/style.css'),
       scriptBuffer = nodeFs.readFileSync('public/javascripts/graycraft.umd.js'),
@@ -37,6 +39,7 @@ const router = express.Router(),
     res.render('index', {
       back,
       css,
+      externalLink,
       host,
       hsl,
       hslLight,
