@@ -1,6 +1,6 @@
 {
   "name": "graycraft.me",
-  "version": "0.6.2-alpha",
+  "version": "0.5.3-alpha",
   "description": "Client and server logic of the graycraft.me website.",
   "main": "index.mts",
   "private": true,
