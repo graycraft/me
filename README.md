@@ -2,14 +2,7 @@
 
 Client and server logic of the [graycraft.me](https://graycraft.me) website.
 
-## Requirements
-
-Bash ^5.0.0:
-
-```bash
-$ bash --version
-  GNU bash, version 5.1.16(1)-release
-```
+## Prerequisites
 
 Node.js 22.11.0:
 
@@ -25,22 +18,41 @@ $ npm -v
   10.9.0
 ```
 
-## Setup
+### Linux
 
-### Debian / Ubuntu
+Debian 8+ or Ubuntu 20+:
 
 ```bash
-$ sudo apt-get install build-essential libcairo2-dev libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev
+$ lsb_release -a
+  No LSB modules are available.
+  Distributor ID:	Debian
+  Description:	Debian GNU/Linux 11 (bullseye)
+  Release:	11
+  Codename:	bullseye
 ```
 
-<https://www.npmjs.com/package/canvas>
+Bash ^5.0.0:
+
+```bash
+$ bash --version
+  GNU bash, version 5.1.16(1)-release
+```
+
+This environment is **recommended for contributions and bugreports**.
+
+### MacOS
+
+### Windows
+
+## Setup
 
 ### Git
 
-Clone the Git repository:
+Clone the Git repository and change the current directory:
 
 ```bash
-$ git clone <gh|https|ssh>graycraft/me.git
+$ git clone <gh|https|ssh>graycraft/me
+$ cd me
 ```
 
 ### Node.js
@@ -53,32 +65,28 @@ $ nvm use
 
 ### NPM
 
-Install modules for usage:
+Install modules for production usage:
 
 ```bash
 $ npm i --production
 ```
 
-Install modules for development:
+or install modules for development:
 
 ```bash
 $ npm i
 ```
 
-### Environment
-
-Optionally `NODE_NO_WARNINGS` can be exported from `.env` file to silence process warnings regarding experimental features.
-
-This command also enables `--experimental-vm-modules` option for running [Jest with ESM](https://jestjs.io/docs/ecmascript-modules):
-
-```bash
-$ export $(cat .env.production | xargs)
-```
-
 ## Usage
 
-Run production server script:
+Run production server:
 
 ```bash
 $ npm start
+```
+
+or development server (in watch mode):
+
+```bash
+$ npm run node:watch
 ```

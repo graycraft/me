@@ -5,7 +5,7 @@
  * @module library/graycraft
  */
 
-export const SIZE: number = 540;
+export const SIZE: number = 480;
 export const SIZE_MIN: number = 256;
 
 /**
@@ -26,18 +26,19 @@ const templateSvg = (
   },
 ) => {
   const { back, hsl, pathCraft, pathGray, round, size, sizeHalf, translateY } = drawSvg(),
+    /** Setting height keeps empty space at the top and bottom of a scaled SVG image. */
     template = `<svg
       class="logotype"
-      height="${/* size */ ''}"
+      ${/* height="" */ ''}
       onerror="'use strict'; console.error('Can not load the SVG:', this);"
       preserveAspectRatio="xMidYMid meet"
       style="background-color: ${round ? 'transparent' : back};"
       viewBox="0 0 ${size} ${size}"
       width="${size}"
     >
-      SVG is not supported by your browser.
       <title>Graycraft</title>
-      ${round && `<circle cx="${sizeHalf}" cy="${sizeHalf}" fill="${back}" r="${sizeHalf}"></circle>`}
+      <desc>SVG is not supported by your browser.</desc>
+      ${round ? `<circle cx="${sizeHalf}" cy="${sizeHalf}" fill="${back}" r="${sizeHalf}"></circle>` : ''}
       <g transform="translate(0, ${translateY})">
         <path
           d="${pathGray}"
