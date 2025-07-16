@@ -33,7 +33,7 @@ const router = express.Router(),
       canvas = drawCanvas(createCanvas),
       svg = templateSvg(drawSvg),
       { buffer: imageBuffer, dataUrl: image } = renderImage(canvas as Canvas & HTMLCanvasElement),
-      imagePath = 'images/graycraft.png';
+      imagePath = 'images/graycraft-cotd.png';
 
     nodeFs.createWriteStream('public/' + imagePath).write(imageBuffer);
     res.render('index', {
