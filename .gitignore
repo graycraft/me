@@ -96,7 +96,7 @@ dist/*
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
-public/images/graycraft.png
+public/images/graycraft-cotd.png
 
 # vuepress build output
 .vuepress/dist
@@ -131,3 +131,7 @@ public/images/graycraft.png
 .pnp.*
 
 distribution/*
+
+# PM2 production configuration.
+
+ecosystem.config.js
