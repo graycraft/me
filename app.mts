@@ -24,7 +24,7 @@ import routerIndex from './routes/index.mts';
 import graycraft from './source/graycraft.umd.js';
 
 const {
-    STATUS: { INTERNAL_SERVER_ERROR },
+    STATUS: { INTERNAL_SERVER_ERROR, NOT_FOUND },
   } = HTTP,
   __filename = fileURLToPath(import.meta.url),
   __dirname = nodePath.dirname(__filename),
@@ -40,9 +40,16 @@ app.use(express.static(nodePath.join(__dirname, 'public')));
 app.use('/', routerIndex);
 
 /**
- * Catch 404 and forward to error handler.
+ * Catch HTTP status code 404 and forward to the error handler.
  */
 app.use(((req, res, next) => {
+  next(createError(NOT_FOUND.CODE));
+}) as RequestHandler);
+
+/**
+ * Error handler.
+ */
+app.use(((error, req, res, next) => {
   const { DEPLOYMENT, HOSTNAME, PORT, PORT_PROXY } = process.env,
     externalLinkBuffer = nodeFs.readFileSync('public/images/external_link.svg'),
     externalLink = global.encodeURIComponent(String(externalLinkBuffer)),
@@ -53,36 +60,32 @@ app.use(((req, res, next) => {
     back = String(backQuery ?? 'transparent'),
     fore = String(foreQuery ?? ''),
     size = Number(sizeQuery ?? SIZE) < SIZE_MIN ? SIZE_MIN : Number(sizeQuery ?? SIZE),
-    { getYear, hsl, hslLight, rgb } = graycraft(size, fore, back);
+    { getYear, hsl, hslLight, rgb } = graycraft(size, fore, back),
+    status: number = error.status || INTERNAL_SERVER_ERROR.CODE;
 
-  res.render('404', {
+  /** Set locals, only providing error in development mode. */
+  res.locals.message = error?.message;
+  res.locals.error = req.app.get('env') === 'development' ? error : {};
+  res.status(status);
+  res.render('error', {
     back,
     css,
     externalLink,
     host,
-    header: '404',
+    header: status,
     hsl,
     hslLight,
     imagePath: 'images/graycraft-cotd.png',
-    paragraph: 'This page is not found on the server.',
+    paragraph:
+      ({
+        404: 'This page is not found on the server',
+        500: 'An error occurred on the server',
+      }[status] ?? 'Unknown error') + '.',
     rgb,
     size,
-    title: 'Not Found',
+    title: Object.values(HTTP.STATUS).find(({ CODE }) => CODE === status)?.TEXT ?? 'Error',
     year: getYear(),
   });
-  next(createError(404));
-}) as RequestHandler);
-
-/**
- * Error handler.
- */
-app.use(((error, req, res) => {
-  /** Set locals, only providing error in development mode. */
-  res.locals.message = error?.message;
-  res.locals.error = req.app.get('env') === 'development' ? error : {};
-
-  res.status(error.status || INTERNAL_SERVER_ERROR);
-  res.render('error');
 }) as ErrorRequestHandler);
 
 export default app;
