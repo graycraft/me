@@ -138,12 +138,14 @@ html(
     block main
     block footer
       footer
-        a(
-          draggable="false"
-          href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fgraycraft.me" + (page || '')
-          ondragstart="'use strict'; event.preventDefault();"
-          rel="external nofollow noopener noreferrer"
-          target="_blank"
-          title="The document is valid HTML5 + ARIA + SVG 1.1 + MathML 2.0."
-        ) W3C (X)HTML5
-        | | DP © #{year}
+        if !page
+          a(
+            draggable="false"
+            href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fgraycraft.me" + (page || '')
+            ondragstart="'use strict'; event.preventDefault();"
+            rel="external nofollow noopener noreferrer"
+            target="_blank"
+            title="The document is valid HTML5 + ARIA + SVG 1.1 + MathML 2.0."
+          ) W3C (X)HTML5
+          |  |
+        |  DP © #{year}
