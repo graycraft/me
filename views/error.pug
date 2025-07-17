@@ -1,0 +1,35 @@
+extends layout
+
+block vars
+  - var page = '/error'
+block styles
+  style.
+    #description {
+      font-size: #{5 / 4}rem;
+      line-height: #{(5 / 4) * 1.5}rem;
+    }
+    #links-index {
+      font-size: #{5 / (5 / 2.333333333333333)}rem;
+      line-height:  #{5 / (5 / 2.333333333333333) * 1.5}rem;
+    }
+    #title {
+      font-size: #{5 * 2}rem;
+      line-height: #{(5 * 4) * 1.5}rem;
+    }
+block main
+  main
+    #wrapper
+      header
+        h1#title=header
+        p#description=paragraph
+      nav
+        #nav-wrapper
+          ul#links-index
+            li
+              a(
+                draggable="false"
+                href="/"
+                ondragstart="'use strict'; event.preventDefault();"
+                target="_top"
+                title="Go to the index page."
+              ) Index
