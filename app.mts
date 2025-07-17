@@ -31,7 +31,7 @@ const {
   app: Express = express();
 
 app.set('views', nodePath.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -63,7 +63,7 @@ app.use(((req, res, next) => {
     header: '404',
     hsl,
     hslLight,
-    imagePath: 'images/graycraft.png',
+    imagePath: 'images/graycraft-cotd.png',
     paragraph: 'This page is not found on the server.',
     rgb,
     size,

@@ -1,7 +1,6 @@
 @charset "utf-8";
 
 a:focus {
-  background-color: white;
   outline: 0 solid transparent;
 }
 a[target="_blank"] {
@@ -114,6 +113,10 @@ ul li {
 
 #links-contacts a {
   color: black;
+}
+#links-index a,
+#links-social a {
+  color: #404040;
 }
 #links-legacy a {
   color: gray;

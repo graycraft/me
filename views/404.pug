@@ -1,0 +1,171 @@
+doctype html
+html(
+  lang="en-us"
+  xmlns="http://www.w3.org/1999/xhtml"
+)
+  head
+    meta(
+      content="IE=edge"
+      http-equiv="X-UA-Compatible"
+    )
+    meta(
+      content="text/html; charset=UTF-8"
+      http-equiv="Content-type"
+    )
+    meta(
+      content="Graycraft"
+      name="apple-mobile-web-app-title"
+    )
+    meta(
+      content="Graycraft"
+      name="application-name"
+    )
+    meta(
+      content="#808080"
+      name="theme-color"
+    )
+    meta(
+      content="Defined Prototype <graycraft@pm.me> (https://graycraft.me/)"
+      name="description"
+    )
+    meta(
+      content="nofollow,noindex"
+      name="robots"
+    )
+    meta(
+      content="width=device-width,initial-scale=1,maximum-scale=2,minimum-scale=.25,user-scalable=yes"
+      name="viewport"
+    )
+    meta(
+      content="Defined Prototype <graycraft@pm.me> (https://graycraft.me/)"
+      property="og:description"
+    )
+    meta(
+      content="Defined Prototype <graycraft@pm.me> (https://graycraft.me/)"
+      property="og:title"
+    )
+    meta(
+      content="https://graycraft.me/"
+      property="og:url"
+    )
+    title #{title}
+    base(
+      href= "//" + host
+      target="_blank"
+    )
+    link(
+      crossorigin="anonymous"
+      href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      referrerpolicy="no-referrer"
+      rel="stylesheet"
+    )
+    link(
+      href="//fonts.googleapis.com"
+      rel="preconnect"
+    )
+    link(
+      crossorigin=""
+      href="//fonts.gstatic.com"
+      rel="preconnect"
+    )
+    link(
+      href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap"
+      rel="stylesheet"
+    )
+    link(
+      href="https://graycraft.me"
+      rel="canonical"
+    )
+    link(
+      href= imagePath
+      rel="apple-touch-icon"
+      sizes="360x360"
+    )
+    link(
+      href= imagePath
+      rel="icon"
+    )
+    link(
+      href= imagePath
+      rel="icon"
+      sizes="360x360"
+      type="image/png"
+    )
+    link(
+      href= imagePath
+      rel="mask-icon"
+    )
+    style!= css
+    style.
+      a:focus {
+        color: #{hsl} !important;
+      }
+      a[target="_blank"] {
+        background-image: url("data:image/svg+xml,#{externalLink}");
+      }
+      body {
+        font-size: #{size / 12}px;
+        line-height: #{(size / 12) * 1.5}px;
+      }
+      nav {
+        background-color: #{hslLight};
+      }
+
+      #description {
+        font-size: #{5 / 4}rem;
+        line-height: #{(5 / 4) * 1.5}rem;
+      }
+      #links-index {
+        font-size: #{5 / (5 / 2.333333333333333)}rem;
+        line-height:  #{5 / (5 / 2.333333333333333) * 1.5}rem;
+      }
+      #title {
+        font-size: #{5 * 2}rem;
+        line-height: #{(5 * 4) * 1.5}rem;
+      }
+    script.
+      'use strict';
+
+      console.log(String.raw`%c
+          ____  _____    ___  _     _ ____  _____    ___   ____ _____
+         / ___\|  __ \  / _ \| |   | | ___\|  __ \  / _ \ |  __|_   _|
+        / /   _| |__\ \/ /_\ \\ \_/ / /    | |__\ \/ /_\ \| |__  | |
+        \ \__| |  __  /  ___  \\   /\ \____|  __  /  ___  |  __| | |
+         \_____|_|  \_|_|   |_| |_|  \____/|_|  \_|_|   |_|_|    |_|
+        because gray matters
+      `, 'color: #{rgb}');
+      document.onselectstart = function (event) {
+        event.preventDefault();
+      };
+      window.addEventListener("load", function () {
+        console.info('COTD (Color Of The Day): ' + '#{rgb}');
+      });
+  body
+    noscript JavaScript is not supported by your browser.
+    main
+      #wrapper
+        header
+          h1#title= header
+          p#description= paragraph
+        nav
+          #nav-wrapper
+            ul#links-index
+              li
+                a(
+                  draggable="false"
+                  href="/"
+                  ondragstart="'use strict'; event.preventDefault();"
+                  target="_top"
+                  title="Go to the index page."
+                ) Index
+    footer
+      a(
+        draggable="false"
+        href="https://html5.validator.nu/?doc=https%3A%2F%2Fgraycraft.me"
+        ondragstart="'use strict'; event.preventDefault();"
+        rel="external nofollow noopener noreferrer"
+        target="_blank"
+        title="The document is valid HTML5 + ARIA + SVG 1.1 + MathML 2.0."
+        ) W3C (X)HTML5
+      | | DP © #{year}
