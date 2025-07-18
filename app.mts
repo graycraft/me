@@ -21,7 +21,7 @@ import logger from 'morgan';
 import { HTTP } from './library/constants.mts';
 import { SIZE, SIZE_MIN } from './library/graycraft.mts';
 import routerIndex from './routes/index.mts';
-import graycraft from './source/graycraft.umd.js';
+import graycraft from './source/graycraft.mjs';
 
 const {
     STATUS: { INTERNAL_SERVER_ERROR, NOT_FOUND },

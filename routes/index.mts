@@ -12,7 +12,7 @@ import express from 'express';
 import nodeFs from 'node:fs';
 
 import templateSvg, { SIZE, SIZE_MIN } from '../library/graycraft.mts';
-import graycraft from '../source/graycraft.umd.js';
+import graycraft from '../source/graycraft.mjs';
 
 const router = express.Router(),
   indexHandler: RequestHandler = (req, res) => {
