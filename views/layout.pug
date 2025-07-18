@@ -125,6 +125,20 @@ html(
          \_____|_|  \_|_|   |_||_| \____/|_|  \_|_|   |_|_|    |_|
         because gray matters
       `, 'color: #{rgb}');
+
+      if ("serviceWorker" in navigator) {
+          window.addEventListener("load", () => {
+              navigator.serviceWorker
+                  .register("javascripts/service-worker.js")
+                  .then((registration) => {
+                      console.log("Service Worker registered: ", registration);
+                  })
+                  .catch((registrationError) => {
+                      console.error("Service Worker registration failed: ", registrationError);
+                  });
+          });
+      }
+
       document.onselectstart = function (event) {
         event.preventDefault();
       };
