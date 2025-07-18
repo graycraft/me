@@ -2,6 +2,10 @@
 
 Client and server logic of the [graycraft.me](https://graycraft.me) website.
 
+The legacy stack CSS/Express/Pug/Webpack used for this project intentionally
+
+to compare with modern approaches like SCSS/NestJS/React/Vite.
+
 ## Prerequisites
 
 Node.js 22.11.0:
@@ -78,6 +82,12 @@ $ npm i
 ```
 
 ## Usage
+
+Build static files for the frontend:
+
+```bash
+$ npm run webpack:build
+```
 
 Run production server:
 
