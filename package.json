@@ -11,7 +11,10 @@
     "preinstall": "./preinstall.sh",
     "start": "node --env-file=.env --env-file=.env.local --env-file=.env.production --loader ts-node/esm ./index.mts",
     "tsc:compile": "tsc",
-    "tsc:config": "tsc --showConfig"
+    "tsc:config": "tsc --showConfig",
+    "webpack:build": "webpack --mode=production --node-env=production",
+    "webpack:build:dev": "webpack --mode=development",
+    "webpack:watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -50,8 +53,17 @@
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
     "@types/requirejs": "^2.1.37",
+    "autoprefixer": "^10.4.21",
+    "css-loader": "^7.1.2",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.1.1",
     "prettier": "3.3.3",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.8.3",
+    "webpack": "^5.100.2",
+    "webpack-cli": "^6.0.1",
+    "workbox-webpack-plugin": "^7.3.0"
   }
 }
