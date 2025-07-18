@@ -20,16 +20,23 @@ block styles
       line-height:  #{5 / (5 / 2.333333333333333) * 1.5}rem;
     }
 block scripts
-  script!=script
+  script(
+    crossorigin="anonymous"
+    integrity="sha512-J5ha2LF4Le+PBQnI5+xAVJDR+sZG9uSgroy4n/A6TLjNkvYQbqZA8WHZdaOvJ0HiKkBC9Frmvs10rFDSHKmveQ=="
+    src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"
+    referrerpolicy="no-referrer"
+  )
   script.
     'use strict';
 
-    window.addEventListener('load', function () {
-        var graycraft = new window.Graycraft(#{size}, '#{hsl}', '#{back}', #{round}),
+    window.requirejs(['javascripts/graycraft.umd.js'], function (Graycraft) {
+      var graycraft = new Graycraft.default(#{size}, '#{hsl}', '#{back}', #{round}),
         canvas = graycraft.drawCanvas();
 
-        graycraft.renderImage(canvas);
-        graycraft.drawSvg();
+      graycraft.renderImage(canvas);
+      graycraft.drawSvg();
+    });
+    window.addEventListener('load', function () {
     });
 block main
   main
