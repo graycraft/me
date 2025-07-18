@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "NodeNext",
     "moduleDetection": "force",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "NodeNext",
     "noEmit": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -34,7 +34,7 @@
     "./library/constants.mts",
     "./library/graycraft.mts",
     "./routes/index.mts",
-    "./source/graycraft.umd.js",
+    "./source/graycraft.mjs",
     "./typings/window.d.ts"
   ],
   "include": ["**/*"],
