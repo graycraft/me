@@ -22,6 +22,7 @@ block styles
 block scripts
   script(
     crossorigin="anonymous"
+    defer
     integrity="sha512-J5ha2LF4Le+PBQnI5+xAVJDR+sZG9uSgroy4n/A6TLjNkvYQbqZA8WHZdaOvJ0HiKkBC9Frmvs10rFDSHKmveQ=="
     src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"
     referrerpolicy="no-referrer"
@@ -29,14 +30,14 @@ block scripts
   script.
     'use strict';
 
-    window.requirejs(['javascripts/graycraft.umd.js'], function (Graycraft) {
-      var graycraft = new Graycraft.default(#{size}, '#{hsl}', '#{back}', #{round}),
-        canvas = graycraft.drawCanvas();
-
-      graycraft.renderImage(canvas);
-      graycraft.drawSvg();
-    });
     window.addEventListener('load', function () {
+      window.requirejs(['bundle/graycraft.umd.js'], function (Graycraft) {
+        var graycraft = new Graycraft.default(#{size}, '#{hsl}', '#{back}', #{round}),
+          canvas = graycraft.drawCanvas();
+
+        graycraft.renderImage(canvas);
+        graycraft.drawSvg();
+      });
     });
 block main
   main
