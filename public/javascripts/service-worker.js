@@ -1,0 +1,1 @@
+../../distribution/service-worker.js
