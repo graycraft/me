@@ -130,7 +130,11 @@ public/images/graycraft-cotd.png
 .yarn/install-state.gz
 .pnp.*
 
-distribution/*
+distribution/*.css
+distribution/*.css.map
+distribution/*.js
+distribution/*.js.LICENSE.txt
+distribution/*.js.map
 
 # PM2 production configuration.
 
