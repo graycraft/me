@@ -54,7 +54,7 @@ app.use(((error, req, res, next) => {
     externalLinkBuffer = nodeFs.readFileSync('public/images/external_link.svg'),
     externalLink = global.encodeURIComponent(String(externalLinkBuffer)),
     host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
-    cssBuffer = nodeFs.readFileSync('public/stylesheets/style.css'),
+    cssBuffer = nodeFs.readFileSync('distribution/main.css'),
     css = String(cssBuffer),
     { back: backQuery, fore: foreQuery, size: sizeQuery } = req.query,
     back = String(backQuery ?? 'transparent'),
