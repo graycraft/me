@@ -52,6 +52,7 @@
     "@types/debug": "^4.1.12",
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
+    "@types/pug": "^2.0.10",
     "@types/requirejs": "^2.1.37",
     "autoprefixer": "^10.4.21",
     "css-loader": "^7.1.2",
