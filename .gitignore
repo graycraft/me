@@ -97,7 +97,6 @@ dist/*
 # public
 
 public/images/graycraft-cotd.png
-public/javascripts
 
 # vuepress build output
 .vuepress/dist
