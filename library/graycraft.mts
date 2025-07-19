@@ -5,6 +5,8 @@
  * @module library/graycraft
  */
 
+import { compile } from 'pug';
+
 export const SIZE: number = 480;
 export const SIZE_MIN: number = 256;
 
@@ -27,31 +29,41 @@ const templateSvg = (
 ) => {
   const { back, hsl, pathCraft, pathGray, round, size, sizeHalf, translateY } = drawSvg(),
     /** Setting height keeps empty space at the top and bottom of a scaled SVG image. */
-    template = `<svg
-      class="logotype"
-      ${/* height="" */ ''}
-      onerror="'use strict'; console.error('Can not load the SVG:', this);"
-      preserveAspectRatio="xMidYMid meet"
-      style="background-color: ${round ? 'transparent' : back};"
-      viewBox="0 0 ${size} ${size}"
-      width="${size}"
-    >
-      <title>Graycraft</title>
-      <desc>SVG is not supported by your browser.</desc>
-      ${round ? `<circle cx="${sizeHalf}" cy="${sizeHalf}" fill="${back}" r="${sizeHalf}"></circle>` : ''}
-      <g transform="translate(0, ${translateY})">
-        <path
-          d="${pathGray}"
-          fill="${hsl}"
-        ></path>
-        <path
-          d="${pathCraft}"
-          fill="black"
-        ></path>
-      </g>
-    </svg>`;
+    template = compile(
+      `svg(
+        class="logotype"
+        onerror="'use strict'; console.error('Can not load the SVG:', this);"
+        preserveAspectRatio="xMidYMid meet"
+        style="background-color: ${round ? 'transparent' : back};"
+        viewBox="0 0 ${size} ${size}"
+        width="${size}"
+      )
+          title="Graycraft"
+          desc="SVG is not supported by your browser."
+          ${
+            round
+              ? `circle(
+                cx="${sizeHalf}"
+                cy="${sizeHalf}"
+                fill="${back}"
+                r="${sizeHalf}
+              )`
+              : ''
+          }
+          g(
+            transform="translate(0, ${translateY})"
+          )
+            path(
+              d="${pathGray}"
+              fill="${hsl}"
+            )
+            path(
+              d="${pathCraft}"
+              fill="black"
+            )`,
+    );
 
-  return template;
+  return template();
 };
 
 export default templateSvg;
