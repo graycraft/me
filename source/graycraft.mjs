@@ -172,6 +172,7 @@ export default function Graycraft(size, fore, back, round) {
 
     if (typeof document === 'object') {
       var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'),
+        desc = document.createElementNS('http://www.w3.org/2000/svg', 'desc'),
         group = document.createElementNS('http://www.w3.org/2000/svg', 'g'),
         title = document.createElementNS('http://www.w3.org/2000/svg', 'title'),
         svg = document.getElementById('logo-svg');
@@ -182,10 +183,12 @@ export default function Graycraft(size, fore, back, round) {
         circle.setAttribute('fill', back);
         circle.setAttribute('r', sizeHalf);
       }
+      desc.textContent = 'SVG is not supported by your browser.';
       group.setAttribute('transform', `translate(0, ${translateY})`);
       title.textContent = 'Graycraft';
       if (svg) {
-        svg.prepend(title);
+        svg.append(title);
+        svg.append(desc);
         if (round) {
           svg.appendChild(circle);
         } else {
