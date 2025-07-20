@@ -2,6 +2,15 @@ extends layout
 
 block vars
   - var page = '/error'
+block metas
+  meta(
+    content="nofollow,noindex"
+    name="robots"
+  )
+  meta(
+    content="nofollow,noindex"
+    name="Googlebot"
+  )
 block styles
   style.
     #description {
