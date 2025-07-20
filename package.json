@@ -55,6 +55,7 @@
     "@types/pug": "^2.0.10",
     "@types/requirejs": "^2.1.37",
     "autoprefixer": "^10.4.21",
+    "compression": "^1.8.1",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
     "mini-css-extract-plugin": "^2.9.2",
