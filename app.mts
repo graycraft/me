@@ -7,16 +7,17 @@
  * @module app
  */
 
-import type { Express, ErrorRequestHandler, RequestHandler } from 'express';
-
 import nodeFs from 'node:fs';
 import nodePath from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import createError from 'http-errors';
 import logger from 'morgan';
+
+import type { Express, ErrorRequestHandler, RequestHandler } from 'express';
 
 import { HTTP } from './library/constants.mts';
 import { SIZE, SIZE_MIN } from './library/graycraft.mts';
@@ -32,6 +33,7 @@ const {
 
 app.set('views', nodePath.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.use(compression());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
