@@ -7,12 +7,12 @@ html(
 )
   head
     meta(
-      content="IE=edge"
-      http-equiv="X-UA-Compatible"
-    )
-    meta(
       content="text/html; charset=UTF-8"
       http-equiv="Content-type"
+    )
+    meta(
+      content="IE=edge"
+      http-equiv="X-UA-Compatible"
     )
     meta(
       content="Graycraft"
@@ -23,16 +23,12 @@ html(
       name="application-name"
     )
     meta(
-      content="#808080"
-      name="theme-color"
-    )
-    meta(
       content="Defined Prototype <graycraft@pm.me> (https://graycraft.me/)"
       name="description"
     )
     meta(
-      content="nofollow,noindex"
-      name="robots"
+      content="#808080"
+      name="theme-color"
     )
     meta(
       content="width=device-width,initial-scale=1,maximum-scale=2,minimum-scale=.25,user-scalable=yes"
@@ -50,6 +46,7 @@ html(
       content="https://graycraft.me/"
       property="og:url"
     )
+    block metas
     title #{title}
     base(
       href= "//" + host
