@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg height="48" preserveAspectRatio="xMidYMid meet" style="display: inline-block; height: 1em; width: 1em;" viewbox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
   <title>Unicode Revised External Link Proposal L2/18-303</title>
+  <desc>See https://www.unicode.org/L2/L2018/18303-external-link.pdf</desc>
   <path d="M36 24c-1.2 0-2 0.8-2 2v12c0 1.2-0.8 2-2 2h-22c-1.2
 0-2-0.8-2-2v-22c0-1.2 0.8-2 2-2h12c1.2 0 2-0.8 2-2s-0.8-2-2-2h-12c-3.4
 0-6 2.6-6 6v22c0 3.4 2.6 6 6 6h22c3.4 0 6-2.6
