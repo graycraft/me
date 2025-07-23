@@ -7,7 +7,7 @@ html(
 )
   head
     meta(
-      content="text/html; charset=UTF-8"
+      content="charset=UTF-8; text/html"
       http-equiv="Content-type"
     )
     meta(
@@ -15,11 +15,15 @@ html(
       http-equiv="X-UA-Compatible"
     )
     meta(
-      content="Graycraft"
+      content=24 * 60 * 60 * 60
+      http-equiv="refresh"
+    )
+    meta(
+      content="GrayCraft"
       name="apple-mobile-web-app-title"
     )
     meta(
-      content="Graycraft"
+      content="GrayCraft"
       name="application-name"
     )
     meta(
@@ -31,7 +35,7 @@ html(
       name="theme-color"
     )
     meta(
-      content="width=device-width,initial-scale=1,maximum-scale=2,minimum-scale=.25,user-scalable=yes"
+      content="initial-scale=1, maximum-scale=2, minimum-scale=0.25, user-scalable=yes, width=device-width"
       name="viewport"
     )
     meta(
@@ -39,8 +43,28 @@ html(
       property="og:description"
     )
     meta(
-      content="Defined Prototype <graycraft@pm.me> (https://graycraft.me/)"
+      content="https://graycraft.me/images/graycraft-cotd.png"
+      property="og:image"
+    )
+    meta(
+      content="https://graycraft.me/images/graycraft-cotd.png"
+      property="og:image:secure_url"
+    )
+    meta(
+      content="en_US"
+      property="og:locale"
+    )
+    meta(
+      content="GrayCraft"
+      property="og:site_name"
+    )
+    meta(
+      content="Defined Prototype (GrayCraft)"
       property="og:title"
+    )
+    meta(
+      content="article"
+      property="og:type"
     )
     meta(
       content="https://graycraft.me/"
@@ -49,7 +73,7 @@ html(
     block metas
     title #{title}
     base(
-      href= "//" + host
+      href="//" + host
       target="_blank"
     )
     link(
@@ -131,7 +155,7 @@ html(
       'use strict';
 
       console.log(String.raw`%c
-          ____  _____    ___ __   ______  _____    ___   ____ _____GC
+          ____  _____    ___ __   ______  _____    ___   __________GC
          / ___\|  __ \  / _ \\ \ / / ___\|  __ \  / _ \ |  __|_   _|
         / /   _| |__\ \/ /_\ \\ V / /    | |__\ \/ /_\ \| |__  | |
         \ \__| |  __  /  ___  || |\ \____|  __  /  ___  |  __| | |
@@ -139,15 +163,15 @@ html(
         because gray matters
       `, 'color: #{rgb}');
 
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
           navigator.serviceWorker
-            .register("bundle/service-worker.js")
+            .register('bundle/service-worker.js')
             .then((registration) => {
-              console.log("Service Worker registered: ", registration);
+              console.log('Service Worker registered: ', registration);
             })
             .catch((registrationError) => {
-              console.error("Service Worker registration failed: ", registrationError);
+              console.error('Service Worker registration failed: ', registrationError);
             });
         });
       }
