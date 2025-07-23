@@ -50,7 +50,7 @@ const router = express.Router(),
       script,
       size,
       svg,
-      title: 'Graycraft',
+      title: 'GrayCraft',
       year: new Date().getUTCFullYear(),
     });
   };
