@@ -10,7 +10,7 @@ a[target='_blank'] {
   padding-right: 1em;
 }
 body {
-  background-color: white;
+  background: url('/static/images/rust.webp') center/cover no-repeat fixed border-box white;
   color: black;
   margin: 0;
   /**
