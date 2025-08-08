@@ -2,6 +2,7 @@
  * Generated using `webpack-cli`.
  *
  * @see https://github.com/webpack/webpack-cli
+ * @see https://webpack.js.org/concepts
  */
 
 'use strict';
@@ -32,7 +33,7 @@ const isProduction = process.env.NODE_ENV === 'production',
           use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
         },
         {
-          test: /\.(eot|gif|jpg|png|svg|ttf|woff|woff2)$/i,
+          test: /\.(eot|gif|jpg|jpeg|png|svg|ttf|webp|woff|woff2)$/i,
           type: 'asset',
         },
       ],
@@ -50,6 +51,7 @@ const isProduction = process.env.NODE_ENV === 'production',
         type: 'umd',
       },
       path: nodePath.resolve(__dirname, 'distribution'),
+      publicPath: '/bundle/',
     },
     /** @see https://webpack.js.org/configuration/plugins */
     plugins: [new MiniCssExtractPlugin()],
