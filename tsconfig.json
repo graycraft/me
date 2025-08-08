@@ -27,7 +27,7 @@
     "useDefineForClassFields": true,
     "useUnknownInCatchVariables": true
   },
-  "exclude": [".vscode", "distribution", "public"],
+  "exclude": [".vscode", "distribution", "static"],
   "files": [
     "./app.mts",
     "./index.mts",

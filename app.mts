@@ -38,7 +38,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(nodePath.join(__dirname, 'public')));
+app.use(express.static(nodePath.join(__dirname, 'static')));
 app.use('/', routerIndex);
 
 /**
@@ -53,7 +53,7 @@ app.use(((req, res, next) => {
  */
 app.use(((error, req, res, next) => {
   const { DEPLOYMENT, HOSTNAME, PORT, PORT_PROXY } = process.env,
-    externalLinkBuffer = nodeFs.readFileSync('public/images/external_link.svg'),
+    externalLinkBuffer = nodeFs.readFileSync('static/images/external_link.svg'),
     externalLink = global.encodeURIComponent(String(externalLinkBuffer)),
     host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
     cssBuffer = nodeFs.readFileSync('distribution/main.css'),

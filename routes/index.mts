@@ -17,7 +17,7 @@ import graycraft from '../source/graycraft.mjs';
 const router = express.Router(),
   indexHandler: RequestHandler = (req, res) => {
     const { DEPLOYMENT, HOSTNAME, PORT, PORT_PROXY } = process.env,
-      externalLinkBuffer = nodeFs.readFileSync('public/images/external_link.svg'),
+      externalLinkBuffer = nodeFs.readFileSync('static/images/external_link.svg'),
       externalLink = global.encodeURIComponent(String(externalLinkBuffer)),
       host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
       cssBuffer = nodeFs.readFileSync('distribution/main.css'),
@@ -35,7 +35,7 @@ const router = express.Router(),
       { buffer: imageBuffer, dataUrl: image } = renderImage(canvas as Canvas & HTMLCanvasElement),
       imagePath = 'images/graycraft-cotd.png';
 
-    nodeFs.createWriteStream('public/' + imagePath).write(imageBuffer);
+    nodeFs.createWriteStream('static/' + imagePath).write(imageBuffer);
     res.render('index', {
       back,
       css,
