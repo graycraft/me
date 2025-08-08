@@ -3,7 +3,7 @@
 a:focus {
   outline: 0 solid transparent;
 }
-a[target="_blank"] {
+a[target='_blank'] {
   background-position: center right;
   background-repeat: no-repeat;
   background-size: 0.75em;
@@ -28,28 +28,22 @@ body {
   font-family:
     /** @see https://fonts.google.com/specimen/Courier+Prime */
     'Courier Prime',
-    /** Since Canonical Ubuntu 12.04. */
-    'Nimbus Mono PS',
-    /** Since Canonical Ubuntu 12.04 (discontinued in 24.04). */
-    'FreeMono',
-    /** Cross-platform, usually not available in a client OS. */
-    'Courier PS',
-    /** Cross-platform, usually not available in a client OS. */
-    'Cutive Mono',
-    /** Cross-platform, usually not available in a client OS. */
-    'Everson Mono',
-    /** Cross-platform, usually not available in a client OS. */
-    'Prestige',
+    /** Since Canonical Ubuntu 12.04. */ 'Nimbus Mono PS',
+    /** Since Canonical Ubuntu 12.04 (discontinued in 24.04). */ 'FreeMono',
+    /** Cross-platform, usually not available in a client OS. */ 'Courier PS',
+    /** Cross-platform, usually not available in a client OS. */ 'Cutive Mono',
+    /** Cross-platform, usually not available in a client OS. */ 'Everson Mono',
+    /** Cross-platform, usually not available in a client OS. */ 'Prestige',
     /**
      * Since Microsoft Windows 3.1.
      * Might fallback to other monospace fonts with significantly different appearance (e.g. Liberation Mono).
      */
-    'Courier New',
+      'Courier New',
     /**
      * IBM legacy.
      * Might fallback to other monospace fonts with significantly different appearance (e.g. Liberation Mono).
      */
-    'Courier',
+      'Courier',
     ui-monospace,
     monospace;
   font-style: normal;
@@ -64,7 +58,8 @@ body {
   -o-user-select: none;
   user-select: none;
 }
-body, html {
+body,
+html {
   height: 100%;
 }
 footer {
@@ -91,7 +86,7 @@ nav {
 }
 p {
   color: gray;
-  margin: 0
+  margin: 0;
 }
 ul {
   list-style-type: none;
