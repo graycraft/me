@@ -140,6 +140,7 @@ export default function Graycraft(size, fore, back, round) {
       ctx.fill();
       ctx.translate(0, (size - dy * 4) / 2);
     }
+
     shape(gray, hsl);
     shape(craft, 'black');
 
@@ -154,9 +155,11 @@ export default function Graycraft(size, fore, back, round) {
       ctx.fillStyle = color;
       ctx.beginPath();
       ctx.moveTo(coords[0].x, coords[0].y);
+
       for (var i = 1; i < coords.length; i++) {
         ctx.lineTo(coords[i].x, coords[i].y);
       }
+
       ctx.closePath();
       ctx.fill();
     }
@@ -205,11 +208,13 @@ export default function Graycraft(size, fore, back, round) {
         defs.appendChild(desc);
         defs.appendChild(filter);
         filter.appendChild(feDropShadow);
+
         if (round) {
           svg.appendChild(circle);
         } else {
           svg.style.setProperty('background-color', back);
         }
+
         svg.appendChild(group);
       }
 
@@ -229,6 +234,7 @@ export default function Graycraft(size, fore, back, round) {
         for (var i = 1; i < coords.length; i++) {
           draw += ` L${coords[i].x} ${coords[i].y}`;
         }
+
         path.setAttribute('d', draw + ' Z');
         path.setAttribute('fill', color);
         group.appendChild(path);
