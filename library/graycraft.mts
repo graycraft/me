@@ -13,7 +13,7 @@ export const SIZE_MIN: number = 256;
 /**
  * Draw shapes on SVG element (server only).
  * @param {() => RSvg} drawSvg Draw shapes function to get parameters.
- * @returns {string} SVG template.
+ * @returns {string} Compiled Pug template with SVG.
  */
 const templateSvg = (
   drawSvg: () => {
@@ -38,8 +38,20 @@ const templateSvg = (
         viewBox="0 0 ${size} ${size}"
         width="${size}"
       )
-          title="Graycraft"
-          desc="SVG is not supported by your browser."
+          defs
+            title="Graycraft"
+            desc="SVG is not supported by your browser."
+            filter(
+              color-interpolation-filters="sRGB"
+              id="shadow"
+            )
+              feDropShadow(
+                dx="16.666667"
+                dy="10"
+                flood-color="black"
+                flood-opacity="0.5"
+                stdDeviation="5"
+              )
           ${
             round
               ? `circle(
@@ -51,6 +63,7 @@ const templateSvg = (
               : ''
           }
           g(
+            filter="url(#shadow)"
             transform="translate(0, ${translateY})"
           )
             path(
