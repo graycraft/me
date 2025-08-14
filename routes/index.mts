@@ -43,12 +43,15 @@ const router = express.Router(),
       host,
       hsl,
       hslLight,
+      /** Image from a base64 data URL (fast). */
       image,
+      /** Image loading from a file URL (slow). */
       imagePath,
       rgb,
       round,
       script,
       size,
+      /** SVG from the compiled Pug template (fastest). */
       svg,
       title: 'GrayCraft',
       year: new Date().getUTCFullYear(),
