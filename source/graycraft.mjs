@@ -172,7 +172,10 @@ export default function Graycraft(size, fore, back, round) {
 
     if (typeof document === 'object') {
       var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'),
+        defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs'),
         desc = document.createElementNS('http://www.w3.org/2000/svg', 'desc'),
+        feDropShadow = document.createElementNS('http://www.w3.org/2000/svg', 'feDropShadow'),
+        filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter'),
         group = document.createElementNS('http://www.w3.org/2000/svg', 'g'),
         title = document.createElementNS('http://www.w3.org/2000/svg', 'title'),
         svg = document.getElementById('logo-svg');
@@ -183,12 +186,25 @@ export default function Graycraft(size, fore, back, round) {
         circle.setAttribute('fill', back);
         circle.setAttribute('r', sizeHalf);
       }
+
       desc.textContent = 'SVG is not supported by your browser.';
+      feDropShadow.setAttribute('dx', '16.666667');
+      feDropShadow.setAttribute('dy', '10');
+      feDropShadow.setAttribute('flood-color', 'black');
+      feDropShadow.setAttribute('flood-opacity', '0.5');
+      feDropShadow.setAttribute('stdDeviation', '5');
+      filter.setAttribute('color-interpolation-filters', 'sRGB');
+      filter.setAttribute('id', 'shadow');
+      group.setAttribute('filter', 'url(#shadow)');
       group.setAttribute('transform', `translate(0, ${translateY})`);
       title.textContent = 'Graycraft';
+
       if (svg) {
-        svg.append(title);
-        svg.append(desc);
+        svg.appendChild(defs);
+        defs.appendChild(title);
+        defs.appendChild(desc);
+        defs.appendChild(filter);
+        filter.appendChild(feDropShadow);
         if (round) {
           svg.appendChild(circle);
         } else {
