@@ -10,9 +10,18 @@ a[target='_blank'] {
   padding-right: 1em;
 }
 body {
-  background: url('/static/images/rust.webp') center/cover no-repeat fixed border-box white;
+  background-attachment: fixed, fixed;
+  background-clip: border-box, border-box;
+  background-color: #7a9897;
+  background-image: linear-gradient(to right bottom, #edecb8, transparent, #445558),
+    linear-gradient(to left bottom, #a0b6af, transparent, #29393c);
+  background-origin: border-box, border-box;
+  background-position:
+    50% 50%,
+    50% 50%;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
   color: black;
-  margin: 0;
   /**
    * Set a Courier-like font from Google Fonts.
    * This requires the font to be downloaded from Google CDN.
@@ -48,9 +57,10 @@ body {
     monospace;
   font-style: normal;
   font-weight: 700;
+  margin: 0;
   min-width: 288px;
   text-align: center;
-  -webkit-touch-callout: none;
+  transition: filter 800ms ease-in-out;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -63,13 +73,9 @@ html {
   height: 100%;
 }
 footer {
-  color: silver;
   font-size: 1rem;
   line-height: 1.5rem;
   margin-top: -1.5rem;
-}
-footer a {
-  color: silver;
 }
 main {
   min-height: 100%;
@@ -79,13 +85,12 @@ h1 {
 }
 header {
   margin: 0 auto;
-  max-width: 480px;
 }
 nav {
   line-height: 10vh;
 }
 p {
-  color: gray;
+  color: #404040;
   margin: 0;
 }
 ul {
@@ -114,11 +119,14 @@ ul li {
   color: #404040;
 }
 #links-legacy a {
-  color: gray;
+  color: #484848;
 }
 #nav-wrapper {
   display: inline-block;
   vertical-align: middle;
+}
+#title {
+  text-shadow: 16.666667px 10px 5px rgb(0, 0, 0, 0.5);
 }
 #wrapper {
   padding-bottom: 1.5rem;
