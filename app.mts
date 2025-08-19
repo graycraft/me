@@ -53,14 +53,12 @@ app.use(((req, res, next) => {
  */
 app.use(((error, req, res, next) => {
   const { DEPLOYMENT, HOSTNAME, PORT, PORT_PROXY } = process.env,
-    externalLinkBuffer = nodeFs.readFileSync('static/images/external_link.svg'),
-    externalLink = global.encodeURIComponent(String(externalLinkBuffer)),
-    host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
-    cssBuffer = nodeFs.readFileSync('distribution/main.css'),
-    css = String(cssBuffer),
     { back: backQuery, fore: foreQuery, size: sizeQuery } = req.query,
     back = String(backQuery ?? 'transparent'),
+    cssBuffer = nodeFs.readFileSync('distribution/main.css'),
+    css = String(cssBuffer),
     fore = String(foreQuery ?? ''),
+    host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
     size = Number(sizeQuery ?? SIZE) < SIZE_MIN ? SIZE_MIN : Number(sizeQuery ?? SIZE),
     { getYear, hsl, hslLight, rgb } = graycraft(size, fore, back),
     status: number = error.status || INTERNAL_SERVER_ERROR.CODE;
@@ -70,14 +68,11 @@ app.use(((error, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? error : {};
   res.status(status);
   res.render('error', {
-    back,
     css,
-    externalLink,
-    host,
     header: status,
+    host,
     hsl,
     hslLight,
-    imagePath: 'images/graycraft-cotd.png',
     paragraph:
       ({
         404: 'This page is not found on the server',
