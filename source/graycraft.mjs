@@ -66,7 +66,7 @@ export default function Graycraft(size, fore, back, round) {
     craft = getCoordinates('craft', dx, dy),
     hue = daysToHue(daysInYear(new Date())),
     hsl = fore || 'hsl(' + hue + ', 50%, 50%)',
-    hslLight = fore || 'hsla(' + hue + ', 93.75%, 93.75%, 75%)',
+    hslLight = fore || 'hsla(' + hue + ', 93.75%, 93.75%, 25%)',
     rgb =
       '#' +
       hslToRgb(hue / 360, 0.5, 0.5)
