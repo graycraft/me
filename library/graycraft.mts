@@ -55,11 +55,11 @@ const templateSvg = (
           ${
             round
               ? `circle(
-                cx="${sizeHalf}"
-                cy="${sizeHalf}"
-                fill="${back}"
-                r="${sizeHalf}
-              )`
+                  cx="${sizeHalf}"
+                  cy="${sizeHalf}"
+                  fill="${back}"
+                  r="${sizeHalf}"
+                )`
               : ''
           }
           g(
