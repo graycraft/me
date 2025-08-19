@@ -78,7 +78,7 @@ html(
     )
     link(
       as="image"
-      href="/images/rain-blur.webp"
+      href="/images/rain.webp"
       id="link-background"
       rel="preload"
     )
@@ -197,13 +197,13 @@ html(
       };
       linkBackground.addEventListener('load', function () {
         window.addEventListener('load', function () {
-          document.body.style.backgroundImage = 'url("/images/rain-blur.webp")';
+          document.body.style.backgroundImage = 'url("/images/rain.webp")';
           document.body.style.filter = 'none';
         })
       })
       window.addEventListener('load', function () {
         linkBackground.addEventListener('load', function () {
-          document.body.style.backgroundImage = 'url("/images/rain-blur.webp")';
+          document.body.style.backgroundImage = 'url("/images/rain.webp")';
           document.body.style.filter = 'none';
         })
         console.info('COTD (Color Of The Day): #{rgb}');
