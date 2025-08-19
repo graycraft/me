@@ -3,6 +3,7 @@
  *
  * @see https://github.com/webpack/webpack-cli
  * @see https://webpack.js.org/concepts
+ * @see https://webpack.js.org/configuration
  */
 
 'use strict';
@@ -58,6 +59,7 @@ const isProduction = process.env.NODE_ENV === 'production',
     resolve: {
       extensions: ['.js', '.mjs', '.mts', '.ts', '...'],
     },
+    target: 'browserslist',
   };
 
 export default () => {
