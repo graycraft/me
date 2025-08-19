@@ -29,7 +29,12 @@ const router = express.Router(),
       fore = String(foreQuery ?? ''),
       round = roundQuery === 'true',
       size = Number(sizeQuery ?? SIZE) < SIZE_MIN ? SIZE_MIN : Number(sizeQuery ?? SIZE),
-      { drawCanvas, drawSvg, hsl, hslLight, renderImage, rgb } = graycraft(size, fore, back, round),
+      { drawCanvas, drawSvg, getYear, hsl, hslLight, renderImage, rgb } = graycraft(
+        size,
+        fore,
+        back,
+        round,
+      ),
       canvas = drawCanvas(createCanvas),
       svg = templateSvg(drawSvg),
       { buffer: imageBuffer, dataUrl: image } = renderImage(canvas as Canvas & HTMLCanvasElement),
@@ -54,7 +59,7 @@ const router = express.Router(),
       /** SVG from the compiled Pug template (fastest). */
       svg,
       title: 'GrayCraft',
-      year: new Date().getUTCFullYear(),
+      year: getYear(),
     });
   };
 
