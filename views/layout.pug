@@ -77,6 +77,12 @@ html(
       target="_blank"
     )
     link(
+      as="image"
+      href="/images/rain-blur.webp"
+      id="link-background"
+      rel="preload"
+    )
+    link(
       as="style"
       crossorigin="anonymous"
       href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -105,22 +111,22 @@ html(
       rel="canonical"
     )
     link(
-      href= imagePath
+      href=imagePath
       rel="apple-touch-icon"
       sizes="360x360"
     )
     link(
-      href= imagePath
+      href=imagePath
       rel="icon"
     )
     link(
-      href= imagePath
+      href=imagePath
       rel="icon"
       sizes="360x360"
       type="image/png"
     )
     link(
-      href= imagePath
+      href=imagePath
       rel="mask-icon"
     )
     noscript
@@ -135,7 +141,7 @@ html(
         href="//fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap"
         rel="stylesheet"
       )
-    style!= css
+    style!=css
     style.
       a:focus {
         color: #{hsl} !important;
@@ -144,8 +150,16 @@ html(
         background-image: url("data:image/svg+xml,#{externalLink}");
       }
       body {
+        filter: blur(#{size / 4}px);
         font-size: #{size / 12}px;
         line-height: #{(size / 12) * 1.5}px;
+      }
+      footer,
+      footer a {
+        color: #{hsl};
+      }
+      header {
+        max-width: #{size}px;
       }
       nav {
         background-color: #{hslLight};
@@ -153,6 +167,8 @@ html(
     block styles
     script.
       'use strict';
+
+      var linkBackground = document.getElementById('link-background');
 
       console.log(String.raw`%c
           ____  _____    ___ __   ______  _____    ___   __________GC
@@ -174,12 +190,22 @@ html(
               console.error('Service Worker registration failed: ', registrationError);
             });
         });
-      }
+      };
 
       document.onselectstart = function (event) {
         event.preventDefault();
       };
+      linkBackground.addEventListener('load', function () {
+        window.addEventListener('load', function () {
+          document.body.style.backgroundImage = 'url("/images/rain-blur.webp")';
+          document.body.style.filter = 'none';
+        })
+      })
       window.addEventListener('load', function () {
+        linkBackground.addEventListener('load', function () {
+          document.body.style.backgroundImage = 'url("/images/rain-blur.webp")';
+          document.body.style.filter = 'none';
+        })
         console.info('COTD (Color Of The Day): #{rgb}');
       });
     block scripts
