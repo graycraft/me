@@ -48,26 +48,33 @@ block main
     #wrapper
       header
         // Image from a base64 data URL generated on the server side (fast).
+        //- Set an explicit width and height to reduce layout shifts and improve CLS.
         img.hidden.logotype(
           alt="<img />"
           draggable="false"
+          height=size
           loading="lazy"
           ondragstart="'use strict'; event.preventDefault();"
           onerror="'use strict'; console.error('Can not load the image:', this);"
           src=image
           title="Graycraft"
+          width=size
         )
         // Image loading from a file URL on a client side (slow).
+        //- Set an explicit width and height to reduce layout shifts and improve CLS.
         img.hidden.logotype(
           alt="<img />"
           draggable="false"
+          height=size
           loading="lazy"
           ondragstart="'use strict'; event.preventDefault();"
           onerror="'use strict'; console.error('Can not load the image:', this.src);"
           src="/" + imagePath
           title="Graycraft"
+          width=size
         )
         // Image from a blob URL generated on a client side (slowest).
+        //- Set an explicit width and height to reduce layout shifts and improve CLS.
         //-
           The source is set dynamically by the script above after page load.
           Before that, attribute `src` is required for tag `img` and must be non-empty to pass W3C (X)HTML5 validation.
@@ -76,10 +83,12 @@ block main
         img#logo-image.hidden.logotype(
           alt="<img />"
           draggable="false"
+          height=size
           ondragstart="'use strict'; event.preventDefault();"
           onerror="'use strict'; console.error('Can not load the image:', this);"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           title="Graycraft"
+          width=size
         )
         // Canvas generated on a client side (slow).
         canvas#logo-canvas.hidden.logotype(
