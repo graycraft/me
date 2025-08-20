@@ -68,10 +68,11 @@ export default function Graycraft(size, fore, back, round) {
     hsl = fore || 'hsl(' + hue + ', 50%, 50%)',
     hslLight = fore || 'hsla(' + hue + ', 93.75%, 93.75%, 25%)',
     rgb =
+      fore ||
       '#' +
-      hslToRgb(hue / 360, 0.5, 0.5)
-        .map((value) => value.toString(16))
-        .join('');
+        hslToRgb(hue / 360, 0.5, 0.5)
+          .map((value) => value.toString(16))
+          .join('');
 
   return {
     drawCanvas,
