@@ -58,6 +58,7 @@ app.use(((error, req, res, next) => {
     cssBuffer = nodeFs.readFileSync('distribution/main.css'),
     css = String(cssBuffer),
     fore = String(foreQuery ?? ''),
+    imagePath = 'images/graycraft-cotd.png',
     host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
     size = Number(sizeQuery ?? SIZE) < SIZE_MIN ? SIZE_MIN : Number(sizeQuery ?? SIZE),
     { getYear, hsl, hslLight, rgb } = graycraft(size, fore, back),
@@ -73,6 +74,7 @@ app.use(((error, req, res, next) => {
     host,
     hsl,
     hslLight,
+    imagePath,
     paragraph:
       ({
         404: 'This page is not found on the server',
