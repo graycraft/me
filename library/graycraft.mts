@@ -18,16 +18,16 @@ export const SIZE_MIN: number = 256;
 const templateSvg = (
   drawSvg: () => {
     back: string;
+    defCraft: string;
+    defGray: string;
     hsl: string;
-    pathCraft: string;
-    pathGray: string;
     round: boolean;
     size: string;
     sizeHalf: string;
     translateY: number;
   },
 ) => {
-  const { back, hsl, pathCraft, pathGray, round, size, sizeHalf, translateY } = drawSvg(),
+  const { back, defCraft, defGray, hsl, round, size, sizeHalf, translateY } = drawSvg(),
     /** Setting height keeps empty space at the top and bottom of a scaled SVG image. */
     template = compile(
       `svg(
@@ -67,11 +67,11 @@ const templateSvg = (
             transform="translate(0, ${translateY})"
           )
             path(
-              d="${pathGray}"
+              d="${defGray}"
               fill="${hsl}"
             )
             path(
-              d="${pathCraft}"
+              d="${defCraft}"
               fill="black"
             )`,
     );
