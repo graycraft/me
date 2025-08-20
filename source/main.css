@@ -60,7 +60,7 @@ body {
   margin: 0;
   min-width: 288px;
   text-align: center;
-  transition: filter 800ms ease-in-out;
+  transition: filter 600ms ease-in-out;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
