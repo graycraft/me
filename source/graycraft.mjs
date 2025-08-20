@@ -21,9 +21,9 @@
  * @typedef {(width: number, height: number, type?: "pdf" | "svg") => Canvas} createCanvas
  * @typedef {{
  *   back: string;
+ *   defCraft: string;
+ *   defGray: string;
  *   hsl: string;
- *   pathCraft: string;
- *   pathGray: string;
  *   round: boolean;
  *   size: string;
  *   sizeHalf: string;
@@ -167,8 +167,8 @@ export default function Graycraft(size, fore, back, round) {
   }
 
   /**
-   * Draw shapes on SVG element (client browser only).
-   * @returns {RSvg} Parameters with which SVG were drawn, to replicate on the server.
+   * Draw shapes on SVG element (client browser only) or get parameters to replicate on the server.
+   * @returns {RSvg} SVG parameters to replicate on the server.
    */
   function drawSvg() {
     var sizeHalf = String(size / 2),
@@ -219,54 +219,53 @@ export default function Graycraft(size, fore, back, round) {
         svg.appendChild(group);
       }
 
-      var pathGray = shape(gray, hsl),
-        pathCraft = shape(craft, 'black');
+      var defCraft = definePath(craft),
+        defGray = definePath(gray),
+        pathCraft = createPath(defCraft, 'black'),
+        pathGray = createPath(defGray, hsl);
+
+      group.appendChild(pathCraft);
+      group.appendChild(pathGray);
 
       /**
-       * Draw specified shape ("gray" or "craft") on canvas.
-       * @param {coords} coords Coordinates to draw a specified shape.
-       * @param {"black" | string} color Shape fill style color.
-       * @returns {string} Path drawn.
+       * Create SVG path element by path definition and fill color.
+       * @param {string} def Path definition to draw.
+       * @param {string} color Path fill color.
+       * @returns {SVGPathElement} SVG path element created.
        */
-      function shape(coords, color) {
-        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path'),
-          draw = `M${coords[0].x} ${coords[0].y}`;
+      function createPath(def, color) {
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
-        for (var i = 1; i < coords.length; i++) {
-          draw += ` L${coords[i].x} ${coords[i].y}`;
-        }
-
-        path.setAttribute('d', draw + ' Z');
+        path.setAttribute('d', def + ' Z');
         path.setAttribute('fill', color);
-        group.appendChild(path);
 
-        return draw;
+        return path;
       }
     } else {
-      var pathGray = shape(gray),
-        pathCraft = shape(craft);
+      var defCraft = definePath(craft),
+        defGray = definePath(gray);
+    }
 
-      /**
-       * Draw specified shape ("gray" or "craft") on canvas.
-       * @param {coords} coords Coordinates to draw a specified shape.
-       * @returns {string} Path to draw on the server.
-       */
-      function shape(coords) {
-        var draw = `M${coords[0].x} ${coords[0].y}`;
+    /**
+     * Define specified shape path ("gray" or "craft") by coordinates.
+     * @param {coords} coords Coordinates to draw a specified shape.
+     * @returns {string} Path definition to draw.
+     */
+    function definePath(coords) {
+      var def = `M${coords[0].x} ${coords[0].y}`;
 
-        for (var i = 1; i < coords.length; i++) {
-          draw += ` L${coords[i].x} ${coords[i].y}`;
-        }
-
-        return draw;
+      for (var i = 1; i < coords.length; i++) {
+        def += ` L${coords[i].x} ${coords[i].y}`;
       }
+
+      return def;
     }
 
     return {
       back,
+      defCraft,
+      defGray,
       hsl,
-      pathCraft,
-      pathGray,
       round: round || false,
       size: String(size),
       sizeHalf,
