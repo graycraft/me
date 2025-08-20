@@ -18,7 +18,7 @@ const router = express.Router(),
   indexHandler: RequestHandler = (req, res) => {
     const { DEPLOYMENT, HOSTNAME, PORT, PORT_PROXY } = process.env,
       externalLinkBuffer = nodeFs.readFileSync('static/images/external_link.svg'),
-      externalLink = global.encodeURIComponent(String(externalLinkBuffer)),
+      externalLink = String(externalLinkBuffer),
       host = HOSTNAME + ':' + (DEPLOYMENT === 'local' ? PORT : PORT_PROXY),
       cssBuffer = nodeFs.readFileSync('distribution/main.css'),
       scriptBuffer = nodeFs.readFileSync('distribution/graycraft.umd.js'),
@@ -38,13 +38,33 @@ const router = express.Router(),
       canvas = drawCanvas(createCanvas),
       svg = templateSvg(drawSvg),
       { buffer: imageBuffer, dataUrl: image } = renderImage(canvas as Canvas & HTMLCanvasElement),
+      /**
+       * Replace `fill` attributes value of a SVG with a specified color.
+       * @param {string} svg SVG source code.
+       * @param {string} color New color value.
+       * @returns {string} SVG source code with replaced fill color.
+       */
+      fillSvg = (svg: string, color: string) => {
+        const filled = global.encodeURIComponent(
+          svg.replaceAll('fill="silver"', `fill="${color}"`),
+        );
+
+        return filled;
+      },
+      externalLink40 = fillSvg(externalLink, '#404040'),
+      externalLink48 = fillSvg(externalLink, '#484848'),
+      externalLinkBlack = fillSvg(externalLink, 'black'),
+      externalLinkCotd = fillSvg(externalLink, rgb),
       imagePath = 'images/graycraft-cotd.png';
 
     nodeFs.createWriteStream('static/' + imagePath).write(imageBuffer);
     res.render('index', {
       back,
       css,
-      externalLink,
+      externalLink40,
+      externalLink48,
+      externalLinkBlack,
+      externalLinkCotd,
       host,
       hsl,
       hslLight,
