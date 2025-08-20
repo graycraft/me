@@ -146,9 +146,6 @@ html(
       a:focus {
         color: #{hsl} !important;
       }
-      a[target="_blank"] {
-        background-image: url("data:image/svg+xml,#{externalLink}");
-      }
       body {
         filter: blur(#{size / 4}px);
         font-size: #{size / 12}px;
@@ -158,11 +155,24 @@ html(
       footer a {
         color: #{hsl};
       }
+      footer a {
+        background-image: url("data:image/svg+xml,#{externalLinkCotd}");
+      }
       header {
         max-width: #{size}px;
       }
       nav {
         background-color: #{hslLight};
+      }
+
+      #links-contacts a {
+        background-image: url("data:image/svg+xml,#{externalLinkBlack}");
+      }
+      #links-legacy a {
+        background-image: url("data:image/svg+xml,#{externalLink48}");
+      }
+      #links-social a {
+        background-image: url("data:image/svg+xml,#{externalLink40}");
       }
     block styles
     script.
