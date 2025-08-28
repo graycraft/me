@@ -1,0 +1,15 @@
+$ cwebp rust.jpeg -o rust.webp
+Saving file 'rust.webp'
+File:      rust.jpeg
+Dimension: 3888 x 2592
+Output:    1375576 bytes Y-U-V-All-PSNR 38.11 43.47 43.49   39.29 dB
+           (1.09 bpp)
+block count:  intra4:      38723  (98.37%)
+              intra16:       643  (1.63%)
+              skipped:         0  (0.00%)
+bytes used:  header:            494  (0.0%)
+             mode-partition: 197429  (14.4%)
+ Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total
+    macroblocks:  |       3%|      18%|      53%|      26%|   39366
+      quantizer:  |      36 |      31 |      26 |      19 |
+   filter level:  |      11 |       6 |       4 |       2 |

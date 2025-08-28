@@ -1,1 +1,0 @@
-../../source/graycraft.umd.js

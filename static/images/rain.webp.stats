@@ -1,0 +1,15 @@
+$ cwebp rain.jpg -o rain.webp -resize 1920 1080
+Saving file 'rain.webp'
+File:      rain.jpg
+Dimension: 1920 x 1080
+Output:    72844 bytes Y-U-V-All-PSNR 41.94 44.73 46.27   42.82 dB
+           (0.28 bpp)
+block count:  intra4:       3765  (46.14%)
+              intra16:      4395  (53.86%)
+              skipped:       601  (7.37%)
+bytes used:  header:            192  (0.3%)
+             mode-partition:  15554  (21.4%)
+ Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total
+    macroblocks:  |       4%|      14%|      15%|      67%|    8160
+      quantizer:  |      36 |      36 |      31 |      21 |
+   filter level:  |      11 |       9 |      20 |      28 |

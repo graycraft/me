@@ -1,4 +1,6 @@
 # Directories with auto-generated files.
+
+.browserslistrc
 .vscode
 distribution
-public
+static

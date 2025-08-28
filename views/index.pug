@@ -1,0 +1,187 @@
+extends layout
+
+block styles
+  style.
+    .logotype {
+      max-height: #{size}px;
+      max-width: #{size}px;
+    }
+    canvas.logotype,
+    img.logotype {
+      filter: drop-shadow(16.666667px 10px 5px rgb(0, 0, 0, 0.5));
+    }
+
+    #links-contacts {
+      font-size: #{5 / 3}rem;
+      line-height: #{(5 / 3) * 1.5}rem;
+    }
+    #links-legacy {
+      font-size: #{5 / 2.5}rem;
+      line-height: #{(5 / 2.5) * 1.5}rem;
+    }
+    #links-social {
+      font-size: #{5 / (5 / 2.333333333333333)}rem;
+      line-height:  #{5 / (5 / 2.333333333333333) * 1.5}rem;
+    }
+block scripts
+  script(
+    crossorigin="anonymous"
+    defer
+    integrity="sha512-J5ha2LF4Le+PBQnI5+xAVJDR+sZG9uSgroy4n/A6TLjNkvYQbqZA8WHZdaOvJ0HiKkBC9Frmvs10rFDSHKmveQ=="
+    referrerpolicy="no-referrer"
+    src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"
+  )
+  script.
+    'use strict';
+
+    window.addEventListener('load', function () {
+      window.requirejs(['bundle/graycraft.umd.js'], function (Graycraft) {
+        var graycraft = new Graycraft.default(#{size}, '#{hsl}', '#{back}', #{round}),
+          canvas = graycraft.drawCanvas();
+
+        graycraft.renderImage(canvas);
+        graycraft.drawSvg();
+      });
+    });
+block main
+  main
+    #wrapper
+      header
+        // Image from a base64 data URL generated on the server side (fast).
+        //- Set an explicit width and height to reduce layout shifts and improve CLS.
+        img.hidden.logotype(
+          alt="<img />"
+          draggable="false"
+          height=size
+          loading="lazy"
+          ondragstart="'use strict'; event.preventDefault();"
+          onerror="'use strict'; console.error('Can not load the image:', this);"
+          src=image
+          title="Graycraft"
+          width=size
+        )
+        // Image loading from a file URL on a client side (slow).
+        //- Set an explicit width and height to reduce layout shifts and improve CLS.
+        img.hidden.logotype(
+          alt="<img />"
+          draggable="false"
+          height=size
+          loading="lazy"
+          ondragstart="'use strict'; event.preventDefault();"
+          onerror="'use strict'; console.error('Can not load the image:', this.src);"
+          src="/" + imagePath
+          title="Graycraft"
+          width=size
+        )
+        // Image from a blob URL generated on a client side (slowest).
+        //- Set an explicit width and height to reduce layout shifts and improve CLS.
+        //-
+          The source is set dynamically by the script above after page load.
+          Before that, attribute `src` is required for tag `img` and must be non-empty to pass W3C (X)HTML5 validation.
+          Therefore any image URL is applicable here, shortest possible and not requiring download is better.
+          @see https://stackoverflow.com/a/13139830
+        img#logo-image.hidden.logotype(
+          alt="<img />"
+          draggable="false"
+          height=size
+          ondragstart="'use strict'; event.preventDefault();"
+          onerror="'use strict'; console.error('Can not load the image:', this);"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          title="Graycraft"
+          width=size
+        )
+        // Canvas generated on a client side (slow).
+        canvas#logo-canvas.hidden.logotype(
+          height=size
+          onerror="'use strict'; console.error('Can not load the canvas:', this);"
+          width=size
+          title="Graycraft"
+        ) Canvas API is not supported by your browser.
+        // SVG generated on a client side from `SVGElement` inherited elements (medium).
+        //- Setting height keeps empty space at the top and bottom of a scaled SVG image.
+        svg.hidden.logotype(
+          id="logo-svg"
+          onerror="'use strict'; console.error('Can not load the SVG:', this);"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox=`0 0 ${size} ${size}`
+          width=size
+        )
+        // SVG generated on the server side from the compiled Pug template (fastest).
+        | !{svg}
+      nav
+        #nav-wrapper
+          ul#links-contacts
+            li
+              a(
+                draggable="false"
+                href="https://t.me/graycraft"
+                ondragstart="'use strict'; event.preventDefault();"
+                rel="external nofollow noopener noreferrer"
+                target="_blank"
+                title="My contact on the Telegram."
+              ) t.me/graycraft
+            li
+              a(
+                draggable="false"
+                href="mailto:graycraft@pm.me"
+                ondragstart="'use strict'; event.preventDefault();"
+                rel="external nofollow noopener noreferrer"
+                target="_blank"
+                title="My email address."
+              ) graycraft@pm.me
+          ul#links-social
+            li
+              a(
+                draggable="false"
+                href="https://github.com/graycraft"
+                ondragstart="'use strict'; event.preventDefault();"
+                rel="external nofollow noopener noreferrer"
+                target="_blank"
+                title="My repositories on the GitHub."
+              ) GitHub
+            li
+              a(
+                draggable="false"
+                href="https://ekaterinburg.hh.ru/resume/b70500c3ff0ed1a9af0039ed1f63615446704f"
+                ondragstart="'use strict'; event.preventDefault();"
+                rel="external nofollow noopener noreferrer"
+                target="_blank"
+                title="My CV on the HeadHunter."
+              ) HeadHunter
+            li
+              a(
+                draggable="false"
+                href="https://www.linkedin.com/in/dmitriy-papulovskiy-0b779b172"
+                ondragstart="'use strict'; event.preventDefault();"
+                rel="external nofollow noopener noreferrer"
+                target="_blank"
+                title="My profile on the LinkedIn."
+              ) LinkedIn
+          ul#links-legacy
+            li
+              a(
+                draggable="false"
+                href="https://freelance.ru/graycraft"
+                ondragstart="'use strict'; event.preventDefault();"
+                rel="external nofollow noopener noreferrer"
+                target="_blank"
+                title="My first works in WebDev."
+              ) Freelance
+            li
+              a(
+                draggable="false"
+                href="https://jsfiddle.net/u/graycraft"
+                ondragstart="'use strict'; event.preventDefault();"
+                rel="external nofollow noopener noreferrer"
+                target="_blank"
+                title="My experiments with JavaScript."
+              ) JSFiddle
+            li
+              a(
+                draggable="false"
+                href="https://web.archive.org/web/20180830010001/https://graycraft.io/#/about"
+                ondragstart="'use strict'; event.preventDefault();"
+                rel="external nofollow noopener noreferrer"
+                target="_blank"
+                title="My legacy personal site."
+              ) graycraft.io
